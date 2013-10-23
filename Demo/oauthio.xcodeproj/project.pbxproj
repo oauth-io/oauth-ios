@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF444ACF17F319BD0016AAF6 /* NSURLRequest+NSURLRequestAllowSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = CF444ACE17F319BD0016AAF6 /* NSURLRequest+NSURLRequestAllowSSL.m */; };
+		CF79EF5D17A7C92E0015C0DE /* OAuthIORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF79EF5C17A7C92E0015C0DE /* OAuthIORequest.m */; };
+		CF79EF6417A7F7390015C0DE /* OAuthIOModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF79EF6317A7F7390015C0DE /* OAuthIOModal.xib */; };
+		CF79EF6717A7F7870015C0DE /* OAuthIOModal.m in Sources */ = {isa = PBXBuildFile; fileRef = CF79EF6617A7F7870015C0DE /* OAuthIOModal.m */; };
+		CF79EF6B17A80C9D0015C0DE /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CF79EF6917A80C9D0015C0DE /* logo.png */; };
+		CF79EF6C17A80C9D0015C0DE /* webshell-logo-rc1-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CF79EF6A17A80C9D0015C0DE /* webshell-logo-rc1-2.png */; };
+		CFC4318117A6A30700C828F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC4318017A6A30700C828F8 /* UIKit.framework */; };
+		CFC4318317A6A30700C828F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC4318217A6A30700C828F8 /* Foundation.framework */; };
+		CFC4318517A6A30700C828F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC4318417A6A30700C828F8 /* CoreGraphics.framework */; };
+		CFC4318B17A6A30700C828F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFC4318917A6A30700C828F8 /* InfoPlist.strings */; };
+		CFC4318D17A6A30700C828F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC4318C17A6A30700C828F8 /* main.m */; };
+		CFC4319117A6A30700C828F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC4319017A6A30700C828F8 /* AppDelegate.m */; };
+		CFC4319417A6A30700C828F8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC4319317A6A30700C828F8 /* ViewController.m */; };
+		CFC4319717A6A30700C828F8 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFC4319517A6A30700C828F8 /* ViewController_iPhone.xib */; };
+		CFC4319A17A6A30700C828F8 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFC4319817A6A30700C828F8 /* ViewController_iPad.xib */; };
+		CFC431A217A6A30700C828F8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC431A117A6A30700C828F8 /* SenTestingKit.framework */; };
+		CFC431A317A6A30700C828F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC4318017A6A30700C828F8 /* UIKit.framework */; };
+		CFC431A417A6A30700C828F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC4318217A6A30700C828F8 /* Foundation.framework */; };
+		CFC431AC17A6A30700C828F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFC431AA17A6A30700C828F8 /* InfoPlist.strings */; };
+		CFC431AF17A6A30700C828F8 /* oauthioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC431AE17A6A30700C828F8 /* oauthioTests.m */; };
+		CFC431BB17A6A32D00C828F8 /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC431BA17A6A32D00C828F8 /* OAuthIO.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CFC431A517A6A30700C828F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFC4317317A6A30700C828F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFC4317B17A6A30700C828F8;
+			remoteInfo = oauthio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CF444ACD17F319BD0016AAF6 /* NSURLRequest+NSURLRequestAllowSSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+NSURLRequestAllowSSL.h"; sourceTree = "<group>"; };
+		CF444ACE17F319BD0016AAF6 /* NSURLRequest+NSURLRequestAllowSSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+NSURLRequestAllowSSL.m"; sourceTree = "<group>"; };
+		CF79EF5B17A7C92E0015C0DE /* OAuthIORequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIORequest.h; sourceTree = "<group>"; };
+		CF79EF5C17A7C92E0015C0DE /* OAuthIORequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIORequest.m; sourceTree = "<group>"; };
+		CF79EF6317A7F7390015C0DE /* OAuthIOModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthIOModal.xib; sourceTree = "<group>"; };
+		CF79EF6517A7F7870015C0DE /* OAuthIOModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOModal.h; sourceTree = "<group>"; };
+		CF79EF6617A7F7870015C0DE /* OAuthIOModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOModal.m; sourceTree = "<group>"; };
+		CF79EF6917A80C9D0015C0DE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		CF79EF6A17A80C9D0015C0DE /* webshell-logo-rc1-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "webshell-logo-rc1-2.png"; sourceTree = "<group>"; };
+		CFC4317C17A6A30700C828F8 /* oauthio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oauthio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFC4318017A6A30700C828F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CFC4318217A6A30700C828F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CFC4318417A6A30700C828F8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CFC4318817A6A30700C828F8 /* oauthio-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "oauthio-Info.plist"; sourceTree = "<group>"; };
+		CFC4318A17A6A30700C828F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CFC4318C17A6A30700C828F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CFC4318E17A6A30700C828F8 /* oauthio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oauthio-Prefix.pch"; sourceTree = "<group>"; };
+		CFC4318F17A6A30700C828F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CFC4319017A6A30700C828F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CFC4319217A6A30700C828F8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CFC4319317A6A30700C828F8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CFC4319617A6A30700C828F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		CFC4319917A6A30700C828F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		CFC431A017A6A30700C828F8 /* oauthioTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = oauthioTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFC431A117A6A30700C828F8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		CFC431A917A6A30700C828F8 /* oauthioTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "oauthioTests-Info.plist"; sourceTree = "<group>"; };
+		CFC431AB17A6A30700C828F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CFC431AD17A6A30700C828F8 /* oauthioTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oauthioTests.h; sourceTree = "<group>"; };
+		CFC431AE17A6A30700C828F8 /* oauthioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = oauthioTests.m; sourceTree = "<group>"; };
+		CFC431B917A6A32D00C828F8 /* OAuthIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIO.h; sourceTree = "<group>"; };
+		CFC431BA17A6A32D00C828F8 /* OAuthIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIO.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CFC4317917A6A30700C828F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC4318117A6A30700C828F8 /* UIKit.framework in Frameworks */,
+				CFC4318317A6A30700C828F8 /* Foundation.framework in Frameworks */,
+				CFC4318517A6A30700C828F8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFC4319C17A6A30700C828F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC431A217A6A30700C828F8 /* SenTestingKit.framework in Frameworks */,
+				CFC431A317A6A30700C828F8 /* UIKit.framework in Frameworks */,
+				CFC431A417A6A30700C828F8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF79EF6817A80C8E0015C0DE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CF79EF6917A80C9D0015C0DE /* logo.png */,
+				CF79EF6A17A80C9D0015C0DE /* webshell-logo-rc1-2.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		CFC4317117A6A30700C828F8 = {
+			isa = PBXGroup;
+			children = (
+				CFC4318617A6A30700C828F8 /* oauthio */,
+				CFC431A717A6A30700C828F8 /* oauthioTests */,
+				CFC4317F17A6A30700C828F8 /* Frameworks */,
+				CFC4317D17A6A30700C828F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFC4317D17A6A30700C828F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFC4317C17A6A30700C828F8 /* oauthio.app */,
+				CFC431A017A6A30700C828F8 /* oauthioTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFC4317F17A6A30700C828F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFC4318017A6A30700C828F8 /* UIKit.framework */,
+				CFC4318217A6A30700C828F8 /* Foundation.framework */,
+				CFC4318417A6A30700C828F8 /* CoreGraphics.framework */,
+				CFC431A117A6A30700C828F8 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFC4318617A6A30700C828F8 /* oauthio */ = {
+			isa = PBXGroup;
+			children = (
+				CF79EF6817A80C8E0015C0DE /* Images */,
+				CFC431B817A6A31600C828F8 /* OAuthIOSDK */,
+				CFC4318F17A6A30700C828F8 /* AppDelegate.h */,
+				CFC4319017A6A30700C828F8 /* AppDelegate.m */,
+				CFC4319217A6A30700C828F8 /* ViewController.h */,
+				CFC4319317A6A30700C828F8 /* ViewController.m */,
+				CFC4319517A6A30700C828F8 /* ViewController_iPhone.xib */,
+				CFC4319817A6A30700C828F8 /* ViewController_iPad.xib */,
+				CFC4318717A6A30700C828F8 /* Supporting Files */,
+			);
+			path = oauthio;
+			sourceTree = "<group>";
+		};
+		CFC4318717A6A30700C828F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFC4318817A6A30700C828F8 /* oauthio-Info.plist */,
+				CFC4318917A6A30700C828F8 /* InfoPlist.strings */,
+				CFC4318C17A6A30700C828F8 /* main.m */,
+				CFC4318E17A6A30700C828F8 /* oauthio-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFC431A717A6A30700C828F8 /* oauthioTests */ = {
+			isa = PBXGroup;
+			children = (
+				CFC431AD17A6A30700C828F8 /* oauthioTests.h */,
+				CFC431AE17A6A30700C828F8 /* oauthioTests.m */,
+				CFC431A817A6A30700C828F8 /* Supporting Files */,
+			);
+			path = oauthioTests;
+			sourceTree = "<group>";
+		};
+		CFC431A817A6A30700C828F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFC431A917A6A30700C828F8 /* oauthioTests-Info.plist */,
+				CFC431AA17A6A30700C828F8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFC431B817A6A31600C828F8 /* OAuthIOSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CF79EF6317A7F7390015C0DE /* OAuthIOModal.xib */,
+				CF79EF6517A7F7870015C0DE /* OAuthIOModal.h */,
+				CF79EF6617A7F7870015C0DE /* OAuthIOModal.m */,
+				CFC431B917A6A32D00C828F8 /* OAuthIO.h */,
+				CFC431BA17A6A32D00C828F8 /* OAuthIO.m */,
+				CF79EF5B17A7C92E0015C0DE /* OAuthIORequest.h */,
+				CF79EF5C17A7C92E0015C0DE /* OAuthIORequest.m */,
+				CF444ACD17F319BD0016AAF6 /* NSURLRequest+NSURLRequestAllowSSL.h */,
+				CF444ACE17F319BD0016AAF6 /* NSURLRequest+NSURLRequestAllowSSL.m */,
+			);
+			name = OAuthIOSDK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFC4317B17A6A30700C828F8 /* oauthio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFC431B217A6A30700C828F8 /* Build configuration list for PBXNativeTarget "oauthio" */;
+			buildPhases = (
+				CFC4317817A6A30700C828F8 /* Sources */,
+				CFC4317917A6A30700C828F8 /* Frameworks */,
+				CFC4317A17A6A30700C828F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = oauthio;
+			productName = oauthio;
+			productReference = CFC4317C17A6A30700C828F8 /* oauthio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CFC4319F17A6A30700C828F8 /* oauthioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFC431B517A6A30700C828F8 /* Build configuration list for PBXNativeTarget "oauthioTests" */;
+			buildPhases = (
+				CFC4319B17A6A30700C828F8 /* Sources */,
+				CFC4319C17A6A30700C828F8 /* Frameworks */,
+				CFC4319D17A6A30700C828F8 /* Resources */,
+				CFC4319E17A6A30700C828F8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFC431A617A6A30700C828F8 /* PBXTargetDependency */,
+			);
+			name = oauthioTests;
+			productName = oauthioTests;
+			productReference = CFC431A017A6A30700C828F8 /* oauthioTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFC4317317A6A30700C828F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Webshell;
+			};
+			buildConfigurationList = CFC4317617A6A30700C828F8 /* Build configuration list for PBXProject "oauthio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CFC4317117A6A30700C828F8;
+			productRefGroup = CFC4317D17A6A30700C828F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFC4317B17A6A30700C828F8 /* oauthio */,
+				CFC4319F17A6A30700C828F8 /* oauthioTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CFC4317A17A6A30700C828F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC4318B17A6A30700C828F8 /* InfoPlist.strings in Resources */,
+				CFC4319717A6A30700C828F8 /* ViewController_iPhone.xib in Resources */,
+				CFC4319A17A6A30700C828F8 /* ViewController_iPad.xib in Resources */,
+				CF79EF6417A7F7390015C0DE /* OAuthIOModal.xib in Resources */,
+				CF79EF6B17A80C9D0015C0DE /* logo.png in Resources */,
+				CF79EF6C17A80C9D0015C0DE /* webshell-logo-rc1-2.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFC4319D17A6A30700C828F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC431AC17A6A30700C828F8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CFC4319E17A6A30700C828F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFC4317817A6A30700C828F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC4318D17A6A30700C828F8 /* main.m in Sources */,
+				CFC4319117A6A30700C828F8 /* AppDelegate.m in Sources */,
+				CFC4319417A6A30700C828F8 /* ViewController.m in Sources */,
+				CFC431BB17A6A32D00C828F8 /* OAuthIO.m in Sources */,
+				CF444ACF17F319BD0016AAF6 /* NSURLRequest+NSURLRequestAllowSSL.m in Sources */,
+				CF79EF5D17A7C92E0015C0DE /* OAuthIORequest.m in Sources */,
+				CF79EF6717A7F7870015C0DE /* OAuthIOModal.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFC4319B17A6A30700C828F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC431AF17A6A30700C828F8 /* oauthioTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CFC431A617A6A30700C828F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFC4317B17A6A30700C828F8 /* oauthio */;
+			targetProxy = CFC431A517A6A30700C828F8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CFC4318917A6A30700C828F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFC4318A17A6A30700C828F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CFC4319517A6A30700C828F8 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFC4319617A6A30700C828F8 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		CFC4319817A6A30700C828F8 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFC4319917A6A30700C828F8 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		CFC431AA17A6A30700C828F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFC431AB17A6A30700C828F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CFC431B017A6A30700C828F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos7.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CFC431B117A6A30700C828F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos7.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CFC431B317A6A30700C828F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "oauthio/oauthio-Prefix.pch";
+				INFOPLIST_FILE = "oauthio/oauthio-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CFC431B417A6A30700C828F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "oauthio/oauthio-Prefix.pch";
+				INFOPLIST_FILE = "oauthio/oauthio-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CFC431B617A6A30700C828F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/oauthio.app/oauthio";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "oauthio/oauthio-Prefix.pch";
+				INFOPLIST_FILE = "oauthioTests/oauthioTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		CFC431B717A6A30700C828F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/oauthio.app/oauthio";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "oauthio/oauthio-Prefix.pch";
+				INFOPLIST_FILE = "oauthioTests/oauthioTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFC4317617A6A30700C828F8 /* Build configuration list for PBXProject "oauthio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFC431B017A6A30700C828F8 /* Debug */,
+				CFC431B117A6A30700C828F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFC431B217A6A30700C828F8 /* Build configuration list for PBXNativeTarget "oauthio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFC431B317A6A30700C828F8 /* Debug */,
+				CFC431B417A6A30700C828F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFC431B517A6A30700C828F8 /* Build configuration list for PBXNativeTarget "oauthioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFC431B617A6A30700C828F8 /* Debug */,
+				CFC431B717A6A30700C828F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFC4317317A6A30700C828F8 /* Project object */;
+}
