@@ -3,7 +3,6 @@
 This is the official iOS SDK for [OAuth.io](https://oauth.io) !
 
  * Supported on iOS 5 or later
- * ARC not supported currently
 
 ### License
 
@@ -31,7 +30,7 @@ Implement the method bellow in your AppDelegate File
        return (YES);
     }
 
-Put #import "OAuthIOModal.h" in your source file and don't forget to adopt the OAuthIO protocol then in your ViewController instanciate the OAuthIOModal object
+Put #import "OAuthIOModal.h" in your source file and don't forget to implement the OAuthIO protocol then in your ViewController instanciate the OAuthIOModal object
 
     // ViewController.h
     // ----------------
@@ -48,16 +47,24 @@ Put #import "OAuthIOModal.h" in your source file and don't forget to adopt the O
     ...
 
     OAuthIOModal oauthioModal = [[OAuthIOModal alloc] initWithKey:@"Public key" delegate:self];
-    [oauthioModal showForProvider:@"facebook"];
+    [oauthioModal showForProvider:@"github"];
 
     ...
 Implement these delegate methods in your ViewController
 
     #pragma mark OAuthIO delegate methods
 
-    - (void)didReceiveOAuthIOResponse:(NSDictionary *)result
+    - (void)didReceiveOAuthIOResponse:(OAuthIORequest *)request
     {
-      NSLog(@"Result : %@\n", result);
+       NSDictionary *params = @{@"name": @"New repo"};
+            
+      [request setContentType:@"json"]; // Github specification - This line convert params to JSON 
+
+      [request post:@"/user/repos" withParams:params success:^(NSString *output, NSHTTPURLResponse *httpResponse)           
+      { 
+         NSLog(@"output:%@, status code:%i\n", output, httpResponse.statusCode);
+      }];
+
     }
 
     - (void)didFailWithOAuthIOError:(NSError *)error
@@ -65,7 +72,16 @@ Implement these delegate methods in your ViewController
       NSLog(@"Error : %@\n", error.description);
     }
 
-### Note
-ARC is not yet supported, disable ARC for OAuthIO files
+### Available methods
 
-![custom_scheme](https://oauth.io/img/no-objc-arc.png)
+    - (void)addHeaderWithKey:(NSString *)key andValue:(NSString *)value;
+
+    - (void)get:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
+
+    - (void)post:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
+
+    - (void)put:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
+
+    - (void)patch:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
+
+    - (void)delete:(NSString *)resource success:(RequestSuccessBlock)success;

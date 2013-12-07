@@ -41,7 +41,6 @@ NSString *_host;
     [super viewDidLoad];
     
     [_browser setFrame:CGRectMake(0, _navigationBarHeight, _browser.frame.size.width, _browser.frame.size.height - _navigationBarHeight - 1)];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTokens:) name:@"OAuthIOGetTokens" object:nil];
 }
 
@@ -50,12 +49,9 @@ NSString *_host;
     [super didReceiveMemoryWarning];
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_browser release];
-    [_rootViewController release];
-    [_navigationBar release];
-    [super dealloc];
 }
 
 - (id)initWithKey:(NSString *)key delegate:(id)delegate
@@ -83,40 +79,29 @@ NSString *_host;
 
 - (void)getTokens:(NSNotification *)notification
 {
-    
     NSString *url = [OAuthIORequest decodeURL:[NSString stringWithFormat:@"%@", [notification.userInfo objectForKey:@"URL"]]];
-    
     NSUInteger start_pos = [url rangeOfString:@"="].location + 1;
     NSString *json = [url substringWithRange:NSMakeRange(start_pos, [url length] - start_pos)];
-    
-    NSError *error = nil;
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] init] autorelease];
-    
-    
+   
     if (jsonData)
     {
-        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+        NSError *error = nil;
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
        
         if (error)
         {
             if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
                 [self.delegate didFailWithOAuthIOError:error];
-            
+
             return;
         }
         
-        NSArray *keys = [jsonObject objectForKey:@"data"];
-        
-        for (NSString *key in keys)
-        {
-            if ([key isEqualToString:@"request"]) continue; // clean response
-        
-            [dict setValue:[keys valueForKey:key] forKey:key];
-        }
-        
+        _oauthio_data = [[OAuthIOData alloc] initWithDictionary:jsonDict];
+        _request = [[OAuthIORequest alloc] initWithOAuthIOData:_oauthio_data];
+       
         if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
-            [self.delegate didReceiveOAuthIOResponse:dict];
+            [self.delegate didReceiveOAuthIOResponse:_request];
     }
 }
 
@@ -128,9 +113,9 @@ NSString *_host;
     _navigationBar = [[UINavigationBar alloc] init];
     [_navigationBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth];
     
-    UINavigationItem *navItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
-    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:nil action:@selector(cancelOperation)] autorelease];
-    UIBarButtonItem *refreshButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:@selector(refreshOperation)] autorelease];
+    UINavigationItem *navItem = [[UINavigationItem alloc] initWithTitle:@""];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:nil action:@selector(cancelOperation)];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:@selector(refreshOperation)];
     
     [navItem setRightBarButtonItem:cancelButton];
     [navItem setLeftBarButtonItem:refreshButton];
@@ -156,7 +141,7 @@ NSString *_host;
 {
     NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
     [errorDetail setValue:@"Operation canceled" forKey:NSLocalizedDescriptionKey];
-    NSError *error = [[[NSError alloc] initWithDomain:@"OAuthIO" code:100 userInfo:errorDetail] autorelease];
+    NSError *error = [[NSError alloc] initWithDomain:@"OAuthIO" code:100 userInfo:errorDetail];
     
     if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
         [self.delegate didFailWithOAuthIOError:error];    
@@ -165,7 +150,7 @@ NSString *_host;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (BOOL) initCustomCallbackURL
+- (BOOL)initCustomCallbackURL
 {
     NSDictionary *customURLDict = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleURLTypes"] objectAtIndex:0];
     
@@ -179,7 +164,7 @@ NSString *_host;
         _callback_url = [[NSString alloc] initWithFormat:@"%@://%@", _scheme, _host];
     else
     {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"OAuthIO" message:@"You must define a custom scheme and an url identifier in your plist configuration file" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] autorelease];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OAuthIO" message:@"You must define a custom scheme and an url identifier in your plist configuration file" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         
         return (NO);
@@ -191,19 +176,17 @@ NSString *_host;
 
 - (void)showWithProvider:(NSString *)provider
 {
-    _provider = provider;
-    
-    [_oauth redirectWithProvider:provider andUrl:_callback_url success:^(NSData *data, NSURLRequest *request){
+    [_oauth redirectWithProvider:provider andUrl:_callback_url success:^(NSData *data, NSHTTPURLResponse *httpResponse){
         
         [_rootViewController presentViewController:self animated:YES completion:^{
             
-            [_browser loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:request.URL];
+            [_browser loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:httpResponse.URL];
             
         }];
         
     } error:^(NSError *error) {
         
-        if ([self.delegate respondsToSelector:@selector(oauth:didFailWithError:)])
+        if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
             [self.delegate didFailWithOAuthIOError:error];
     }];
 }

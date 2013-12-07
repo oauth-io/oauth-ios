@@ -24,25 +24,30 @@
 
 @protocol OAuthIODelegate <NSObject>
 
-- (void)didReceiveOAuthIOResponse:(NSDictionary *)result;
+- (void)didReceiveOAuthIOResponse:(OAuthIORequest *)request;
 - (void)didFailWithOAuthIOError:(NSError *)error;
 
 @end
 
 @interface OAuthIOModal : UIViewController<UIWebViewDelegate>
 {
+
+@private
+    OAuthIO             *_oauth;
+    OAuthIOData         *_oauthio_data;
+    OAuthIORequest      *_request;
+
     NSString            *_key;
     NSString            *_scheme;
     NSString            *_callback_url;
-    OAuthIO             *_oauth;
     UIViewController    *_rootViewController;
+    UIWebView           *_browser;
+    UINavigationBar     *_navigationBar;
     NSUInteger          _navigationBarHeight;
+
 }
 
-@property (nonatomic, retain) id<OAuthIODelegate>   delegate;
-@property (nonatomic, retain) NSString              *provider;
-@property (nonatomic, retain) UINavigationBar       *navigationBar;
-@property (nonatomic, retain) IBOutlet UIWebView    *browser;
+@property (weak) id<OAuthIODelegate>   delegate;
 
 + (void) handleOAuthIOResponse:(NSURL *)url;
 

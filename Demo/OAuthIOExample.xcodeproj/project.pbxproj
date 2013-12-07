@@ -1,0 +1,531 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF21067E1853267D00290710 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF21067D1853267D00290710 /* TwitterViewController.m */; };
+		CFB3F62B184619B000E2D967 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB3F62A184619B000E2D967 /* Foundation.framework */; };
+		CFB3F62D184619B000E2D967 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB3F62C184619B000E2D967 /* CoreGraphics.framework */; };
+		CFB3F62F184619B000E2D967 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB3F62E184619B000E2D967 /* UIKit.framework */; };
+		CFB3F635184619B000E2D967 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFB3F633184619B000E2D967 /* InfoPlist.strings */; };
+		CFB3F637184619B000E2D967 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F636184619B000E2D967 /* main.m */; };
+		CFB3F63B184619B000E2D967 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F63A184619B000E2D967 /* AppDelegate.m */; };
+		CFB3F63E184619B000E2D967 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB3F63C184619B000E2D967 /* Main.storyboard */; };
+		CFB3F641184619B000E2D967 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F640184619B000E2D967 /* FirstViewController.m */; };
+		CFB3F646184619B000E2D967 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB3F645184619B000E2D967 /* Images.xcassets */; };
+		CFB3F64D184619B000E2D967 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB3F64C184619B000E2D967 /* XCTest.framework */; };
+		CFB3F64E184619B000E2D967 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB3F62A184619B000E2D967 /* Foundation.framework */; };
+		CFB3F64F184619B000E2D967 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB3F62E184619B000E2D967 /* UIKit.framework */; };
+		CFB3F657184619B000E2D967 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFB3F655184619B000E2D967 /* InfoPlist.strings */; };
+		CFB3F659184619B000E2D967 /* OAuthIOExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F658184619B000E2D967 /* OAuthIOExampleTests.m */; };
+		CFB3F66E184619CA00E2D967 /* NSURLRequest+NSURLRequestAllowSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F664184619CA00E2D967 /* NSURLRequest+NSURLRequestAllowSSL.m */; };
+		CFB3F66F184619CA00E2D967 /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F666184619CA00E2D967 /* OAuthIO.m */; };
+		CFB3F670184619CA00E2D967 /* OAuthIOData.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F668184619CA00E2D967 /* OAuthIOData.m */; };
+		CFB3F671184619CA00E2D967 /* OAuthIOModal.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F66A184619CA00E2D967 /* OAuthIOModal.m */; };
+		CFB3F672184619CA00E2D967 /* OAuthIOModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFB3F66B184619CA00E2D967 /* OAuthIOModal.xib */; };
+		CFB3F673184619CA00E2D967 /* OAuthIORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3F66D184619CA00E2D967 /* OAuthIORequest.m */; };
+		CFE8FCCA1846AAA9007C4BF6 /* GitHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE8FCC91846AAA9007C4BF6 /* GitHubViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CFB3F650184619B000E2D967 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFB3F61F184619B000E2D967 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFB3F626184619B000E2D967;
+			remoteInfo = OAuthIOExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CF21067C1853267D00290710 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
+		CF21067D1853267D00290710 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
+		CFB3F627184619B000E2D967 /* OAuthIOExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OAuthIOExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB3F62A184619B000E2D967 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CFB3F62C184619B000E2D967 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CFB3F62E184619B000E2D967 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CFB3F632184619B000E2D967 /* OAuthIOExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OAuthIOExample-Info.plist"; sourceTree = "<group>"; };
+		CFB3F634184619B000E2D967 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CFB3F636184619B000E2D967 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CFB3F638184619B000E2D967 /* OAuthIOExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OAuthIOExample-Prefix.pch"; sourceTree = "<group>"; };
+		CFB3F639184619B000E2D967 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CFB3F63A184619B000E2D967 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CFB3F63D184619B000E2D967 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CFB3F63F184619B000E2D967 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		CFB3F640184619B000E2D967 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		CFB3F645184619B000E2D967 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CFB3F64B184619B000E2D967 /* OAuthIOExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OAuthIOExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB3F64C184619B000E2D967 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CFB3F654184619B000E2D967 /* OAuthIOExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OAuthIOExampleTests-Info.plist"; sourceTree = "<group>"; };
+		CFB3F656184619B000E2D967 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CFB3F658184619B000E2D967 /* OAuthIOExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OAuthIOExampleTests.m; sourceTree = "<group>"; };
+		CFB3F663184619CA00E2D967 /* NSURLRequest+NSURLRequestAllowSSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+NSURLRequestAllowSSL.h"; sourceTree = "<group>"; };
+		CFB3F664184619CA00E2D967 /* NSURLRequest+NSURLRequestAllowSSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+NSURLRequestAllowSSL.m"; sourceTree = "<group>"; };
+		CFB3F665184619CA00E2D967 /* OAuthIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIO.h; sourceTree = "<group>"; };
+		CFB3F666184619CA00E2D967 /* OAuthIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIO.m; sourceTree = "<group>"; };
+		CFB3F667184619CA00E2D967 /* OAuthIOData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOData.h; sourceTree = "<group>"; };
+		CFB3F668184619CA00E2D967 /* OAuthIOData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOData.m; sourceTree = "<group>"; };
+		CFB3F669184619CA00E2D967 /* OAuthIOModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOModal.h; sourceTree = "<group>"; };
+		CFB3F66A184619CA00E2D967 /* OAuthIOModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOModal.m; sourceTree = "<group>"; };
+		CFB3F66B184619CA00E2D967 /* OAuthIOModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthIOModal.xib; sourceTree = "<group>"; };
+		CFB3F66C184619CA00E2D967 /* OAuthIORequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIORequest.h; sourceTree = "<group>"; };
+		CFB3F66D184619CA00E2D967 /* OAuthIORequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIORequest.m; sourceTree = "<group>"; };
+		CFE8FCC81846AAA9007C4BF6 /* GitHubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitHubViewController.h; sourceTree = "<group>"; };
+		CFE8FCC91846AAA9007C4BF6 /* GitHubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitHubViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CFB3F624184619B000E2D967 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB3F62D184619B000E2D967 /* CoreGraphics.framework in Frameworks */,
+				CFB3F62F184619B000E2D967 /* UIKit.framework in Frameworks */,
+				CFB3F62B184619B000E2D967 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFB3F648184619B000E2D967 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB3F64D184619B000E2D967 /* XCTest.framework in Frameworks */,
+				CFB3F64F184619B000E2D967 /* UIKit.framework in Frameworks */,
+				CFB3F64E184619B000E2D967 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CFB3F61E184619B000E2D967 = {
+			isa = PBXGroup;
+			children = (
+				CFB3F630184619B000E2D967 /* OAuthIOExample */,
+				CFB3F652184619B000E2D967 /* OAuthIOExampleTests */,
+				CFB3F629184619B000E2D967 /* Frameworks */,
+				CFB3F628184619B000E2D967 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFB3F628184619B000E2D967 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3F627184619B000E2D967 /* OAuthIOExample.app */,
+				CFB3F64B184619B000E2D967 /* OAuthIOExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFB3F629184619B000E2D967 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3F62A184619B000E2D967 /* Foundation.framework */,
+				CFB3F62C184619B000E2D967 /* CoreGraphics.framework */,
+				CFB3F62E184619B000E2D967 /* UIKit.framework */,
+				CFB3F64C184619B000E2D967 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFB3F630184619B000E2D967 /* OAuthIOExample */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3F662184619B600E2D967 /* OAuthIOSDK */,
+				CFB3F639184619B000E2D967 /* AppDelegate.h */,
+				CFB3F63A184619B000E2D967 /* AppDelegate.m */,
+				CFB3F63C184619B000E2D967 /* Main.storyboard */,
+				CFB3F63F184619B000E2D967 /* FirstViewController.h */,
+				CFB3F640184619B000E2D967 /* FirstViewController.m */,
+				CFE8FCC81846AAA9007C4BF6 /* GitHubViewController.h */,
+				CFE8FCC91846AAA9007C4BF6 /* GitHubViewController.m */,
+				CF21067C1853267D00290710 /* TwitterViewController.h */,
+				CF21067D1853267D00290710 /* TwitterViewController.m */,
+				CFB3F645184619B000E2D967 /* Images.xcassets */,
+				CFB3F631184619B000E2D967 /* Supporting Files */,
+			);
+			path = OAuthIOExample;
+			sourceTree = "<group>";
+		};
+		CFB3F631184619B000E2D967 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3F632184619B000E2D967 /* OAuthIOExample-Info.plist */,
+				CFB3F633184619B000E2D967 /* InfoPlist.strings */,
+				CFB3F636184619B000E2D967 /* main.m */,
+				CFB3F638184619B000E2D967 /* OAuthIOExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFB3F652184619B000E2D967 /* OAuthIOExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3F658184619B000E2D967 /* OAuthIOExampleTests.m */,
+				CFB3F653184619B000E2D967 /* Supporting Files */,
+			);
+			path = OAuthIOExampleTests;
+			sourceTree = "<group>";
+		};
+		CFB3F653184619B000E2D967 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3F654184619B000E2D967 /* OAuthIOExampleTests-Info.plist */,
+				CFB3F655184619B000E2D967 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFB3F662184619B600E2D967 /* OAuthIOSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3F663184619CA00E2D967 /* NSURLRequest+NSURLRequestAllowSSL.h */,
+				CFB3F664184619CA00E2D967 /* NSURLRequest+NSURLRequestAllowSSL.m */,
+				CFB3F665184619CA00E2D967 /* OAuthIO.h */,
+				CFB3F666184619CA00E2D967 /* OAuthIO.m */,
+				CFB3F667184619CA00E2D967 /* OAuthIOData.h */,
+				CFB3F668184619CA00E2D967 /* OAuthIOData.m */,
+				CFB3F669184619CA00E2D967 /* OAuthIOModal.h */,
+				CFB3F66A184619CA00E2D967 /* OAuthIOModal.m */,
+				CFB3F66B184619CA00E2D967 /* OAuthIOModal.xib */,
+				CFB3F66C184619CA00E2D967 /* OAuthIORequest.h */,
+				CFB3F66D184619CA00E2D967 /* OAuthIORequest.m */,
+			);
+			name = OAuthIOSDK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFB3F626184619B000E2D967 /* OAuthIOExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFB3F65C184619B000E2D967 /* Build configuration list for PBXNativeTarget "OAuthIOExample" */;
+			buildPhases = (
+				CFB3F623184619B000E2D967 /* Sources */,
+				CFB3F624184619B000E2D967 /* Frameworks */,
+				CFB3F625184619B000E2D967 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OAuthIOExample;
+			productName = OAuthIOExample;
+			productReference = CFB3F627184619B000E2D967 /* OAuthIOExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CFB3F64A184619B000E2D967 /* OAuthIOExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFB3F65F184619B000E2D967 /* Build configuration list for PBXNativeTarget "OAuthIOExampleTests" */;
+			buildPhases = (
+				CFB3F647184619B000E2D967 /* Sources */,
+				CFB3F648184619B000E2D967 /* Frameworks */,
+				CFB3F649184619B000E2D967 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFB3F651184619B000E2D967 /* PBXTargetDependency */,
+			);
+			name = OAuthIOExampleTests;
+			productName = OAuthIOExampleTests;
+			productReference = CFB3F64B184619B000E2D967 /* OAuthIOExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFB3F61F184619B000E2D967 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Webshell;
+				TargetAttributes = {
+					CFB3F64A184619B000E2D967 = {
+						TestTargetID = CFB3F626184619B000E2D967;
+					};
+				};
+			};
+			buildConfigurationList = CFB3F622184619B000E2D967 /* Build configuration list for PBXProject "OAuthIOExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CFB3F61E184619B000E2D967;
+			productRefGroup = CFB3F628184619B000E2D967 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFB3F626184619B000E2D967 /* OAuthIOExample */,
+				CFB3F64A184619B000E2D967 /* OAuthIOExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CFB3F625184619B000E2D967 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB3F646184619B000E2D967 /* Images.xcassets in Resources */,
+				CFB3F635184619B000E2D967 /* InfoPlist.strings in Resources */,
+				CFB3F63E184619B000E2D967 /* Main.storyboard in Resources */,
+				CFB3F672184619CA00E2D967 /* OAuthIOModal.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFB3F649184619B000E2D967 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB3F657184619B000E2D967 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFB3F623184619B000E2D967 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB3F673184619CA00E2D967 /* OAuthIORequest.m in Sources */,
+				CFB3F63B184619B000E2D967 /* AppDelegate.m in Sources */,
+				CFB3F641184619B000E2D967 /* FirstViewController.m in Sources */,
+				CFB3F66F184619CA00E2D967 /* OAuthIO.m in Sources */,
+				CFB3F637184619B000E2D967 /* main.m in Sources */,
+				CFE8FCCA1846AAA9007C4BF6 /* GitHubViewController.m in Sources */,
+				CF21067E1853267D00290710 /* TwitterViewController.m in Sources */,
+				CFB3F66E184619CA00E2D967 /* NSURLRequest+NSURLRequestAllowSSL.m in Sources */,
+				CFB3F670184619CA00E2D967 /* OAuthIOData.m in Sources */,
+				CFB3F671184619CA00E2D967 /* OAuthIOModal.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFB3F647184619B000E2D967 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB3F659184619B000E2D967 /* OAuthIOExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CFB3F651184619B000E2D967 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFB3F626184619B000E2D967 /* OAuthIOExample */;
+			targetProxy = CFB3F650184619B000E2D967 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CFB3F633184619B000E2D967 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFB3F634184619B000E2D967 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CFB3F63C184619B000E2D967 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFB3F63D184619B000E2D967 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CFB3F655184619B000E2D967 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFB3F656184619B000E2D967 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CFB3F65A184619B000E2D967 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CFB3F65B184619B000E2D967 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CFB3F65D184619B000E2D967 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OAuthIOExample/OAuthIOExample-Prefix.pch";
+				INFOPLIST_FILE = "OAuthIOExample/OAuthIOExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CFB3F65E184619B000E2D967 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OAuthIOExample/OAuthIOExample-Prefix.pch";
+				INFOPLIST_FILE = "OAuthIOExample/OAuthIOExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CFB3F660184619B000E2D967 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OAuthIOExample.app/OAuthIOExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OAuthIOExample/OAuthIOExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OAuthIOExampleTests/OAuthIOExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CFB3F661184619B000E2D967 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OAuthIOExample.app/OAuthIOExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OAuthIOExample/OAuthIOExample-Prefix.pch";
+				INFOPLIST_FILE = "OAuthIOExampleTests/OAuthIOExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFB3F622184619B000E2D967 /* Build configuration list for PBXProject "OAuthIOExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFB3F65A184619B000E2D967 /* Debug */,
+				CFB3F65B184619B000E2D967 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFB3F65C184619B000E2D967 /* Build configuration list for PBXNativeTarget "OAuthIOExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFB3F65D184619B000E2D967 /* Debug */,
+				CFB3F65E184619B000E2D967 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFB3F65F184619B000E2D967 /* Build configuration list for PBXNativeTarget "OAuthIOExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFB3F660184619B000E2D967 /* Debug */,
+				CFB3F661184619B000E2D967 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFB3F61F184619B000E2D967 /* Project object */;
+}

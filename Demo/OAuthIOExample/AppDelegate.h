@@ -1,18 +1,14 @@
 //
 //  AppDelegate.h
-//  oauthio
-//  
-//  Copyright (c) 2013 Webshell. All rights reserved.
+//  OAuthIOExample
 //
 
 #import <UIKit/UIKit.h>
-
-@class ViewController;
+#import "OAuthIOModal.h"
+#import "FirstViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ViewController *viewController;
 
 @end
