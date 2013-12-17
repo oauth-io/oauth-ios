@@ -72,7 +72,7 @@ Implement these delegate methods in your ViewController
       NSLog(@"Error : %@\n", error.description);
     }
 
-### Available methods for OAuthIORequest
+### Available methods for OAuthIORequest object
 
     - (void)addHeaderWithKey:(NSString *)key andValue:(NSString *)value;
 

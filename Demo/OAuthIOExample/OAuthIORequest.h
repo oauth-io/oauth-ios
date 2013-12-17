@@ -37,6 +37,7 @@ typedef void (^RequestErrorBlock) (NSError *error);
     NSHTTPURLResponse   *_response;
     NSMutableURLRequest *_req;
     NSMutableData       *_responseData;
+    NSMutableDictionary *_headers;
 }
 
 @property (nonatomic, copy)     RequestSuccessBlock success;

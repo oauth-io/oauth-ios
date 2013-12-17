@@ -36,16 +36,16 @@
         if (!self)
 
         return (nil);
-    
+
     _data = data;
-     
+    
     return (self);
 }
 
 - (id)copyWithZone:(NSZone *)zone
 {
     OAuthIORequest *request = [[OAuthIORequest allocWithZone:zone] initWithOAuthIOData:_data];
-    
+
     return (request);
 }
 
@@ -61,7 +61,7 @@
         NSString *oauthio_header = [NSString stringWithFormat:@"k=%@&oauthv=1&oauth_token=%@&oauth_token_secret=%@", [OAuthIO getPublicKey], _data.oauth_token, _data.oauth_token_secret];
         
         NSMutableString *url = [NSMutableString stringWithFormat:@"%@/request/%@%@", kOAUTHIO_URL, _data.provider, resxUrl];
-        
+
         if (_data.request_query)
         {
             if ([method isEqualToString:kOAUTHIO_GET_METHOD] && params)
@@ -73,10 +73,15 @@
         else if ([method isEqualToString:kOAUTHIO_GET_METHOD] && params)
             [url appendFormat:@"?%@", [self buildQueryWithDictionnary:params]];
         
+        //url = [NSMutableString stringWithString:@"http://httpbin.org/post"];
         _req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
         [_req setValue:oauthio_header forHTTPHeaderField:@"oauthio"];
         [_req setHTTPMethod:method];
-
+        
+        if ([_headers count] && _headers != nil)
+            for (NSString *key in [_headers allKeys])
+                [_req setValue:[_headers objectForKey:key] forHTTPHeaderField:key];
+        
         if ([method isEqualToString:kOAUTHIO_POST_METHOD] || [method isEqualToString:kOAUTHIO_PUT_METHOD] || [method isEqualToString:kOAUTHIO_PATCH_METHOD])
         {
             NSData *postData = [self buildPostParams:params];
@@ -115,11 +120,14 @@
             [url appendFormat:@"?%@", [self buildQueryWithDictionnary:params]];
 
         _req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-
+        [_req setHTTPMethod:method];
+        
         if (_data.request_headers)
             [self buildHeaderWithDictionnary:_data.request_headers];
-      
-        [_req setHTTPMethod:method];
+
+        if ([_headers count] && _headers != nil)
+            for (NSString *key in [_headers allKeys])
+                [_req setValue:[_headers objectForKey:key] forHTTPHeaderField:key];
         
         if ([method isEqualToString:kOAUTHIO_POST_METHOD] || [method isEqualToString:kOAUTHIO_PUT_METHOD] || [method isEqualToString:kOAUTHIO_PATCH_METHOD])
         {
@@ -164,11 +172,12 @@
     [self prepareAndExec:resource andMethod:kOAUTHIO_DELETE_METHOD andParams:nil];
 }
 
-
-
 - (void)addHeaderWithKey:(NSString *)key andValue:(NSString *)value
 {
-    [_req setValue:value forHTTPHeaderField:key];
+    if (!_headers)
+        _headers = [[NSMutableDictionary alloc] init];
+    
+    [_headers setValue:value forKey:key];
 }
 
 - (NSString *)replaceParam:(NSString *)key values:(NSDictionary *)dict
@@ -246,7 +255,7 @@
             if ([val length] != 0)
             {
                 val = [self replaceParam:val values:_data.request];
-                [self addHeaderWithKey:key andValue:val];
+                [_req setValue:val forHTTPHeaderField:key];
             }
         }
     }
@@ -266,11 +275,12 @@
     }
     else if ([params isKindOfClass:[NSString class]])
         postData = [params dataUsingEncoding:NSUTF8StringEncoding];
+    else if ([params isKindOfClass:[NSData class]])
+        postData = params;
     
     NSString *contentLength = [NSString stringWithFormat:@"%i", [postData length]];
     [self addHeaderWithKey:@"Content-Length" andValue:contentLength];
-    [self addHeaderWithKey:@"Current-Type" andValue:@"application/x-www-form-urlencoded"];
-    
+
     return (postData);
 }
 
@@ -303,6 +313,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    _headers = nil;
      NSString *output = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
     _success(output, _response);
  
@@ -311,11 +322,6 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
     return (nil);
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    _error(error);
 }
 
 @end

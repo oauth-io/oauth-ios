@@ -19,7 +19,7 @@
 #include "OAuthIOData.h"
 #include "OAuthIO.h"
 
-#define kOAUTHIO_URL @"https://192.168.1.40:6284"
+#define kOAUTHIO_URL @"https://oauth.io"
 
 #define kOAUTHIO_GET_METHOD     @"GET"
 #define kOAUTHIO_POST_METHOD    @"POST"
@@ -37,6 +37,7 @@ typedef void (^RequestErrorBlock) (NSError *error);
     NSHTTPURLResponse   *_response;
     NSMutableURLRequest *_req;
     NSMutableData       *_responseData;
+    NSMutableDictionary *_headers;
 }
 
 @property (nonatomic, copy)     RequestSuccessBlock success;
