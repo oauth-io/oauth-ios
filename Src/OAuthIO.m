@@ -50,7 +50,6 @@ NSString *_key;
             : @"";
     
     NSString *queryString = [[NSString alloc] initWithFormat:@"%@/%@?k=%@%@&redirect_uri=%@", [NSString stringWithFormat:@"%@/auth", kOAUTHIO_URL], provider, _key, optionString, url];
-    NSLog(@"QUERY STRING IS: %@",queryString);
     
     _req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:queryString]];
     [_req setValue:@"(iPhone; iPad) AppleWebKit" forHTTPHeaderField:@"User-Agent"];
