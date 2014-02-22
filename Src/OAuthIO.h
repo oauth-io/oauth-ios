@@ -38,7 +38,11 @@ typedef void (^OAuthIOErrorBlock) (NSError *error);
 + (NSString *)getPublicKey;
 
 - (id)initWithKey:(NSString *)key;
-- (void)redirectWithProvider:(NSString *)provider andUrl:(NSString *)url success:(OAuthIOSuccessBlock)success error:(OAuthIOErrorBlock)error;
+- (void)redirectWithProvider:(NSString *)provider
+                      andUrl:(NSString *)url
+                  andOptions:(NSDictionary*)options
+                     success:(OAuthIOSuccessBlock)success
+                       error:(OAuthIOErrorBlock)error;
 
 @end
 

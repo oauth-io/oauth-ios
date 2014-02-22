@@ -53,5 +53,6 @@
 
 - (id)initWithKey:(NSString *)key delegate:(id)delegate;
 - (void)showWithProvider:(NSString *)provider;
+- (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options;
 
 @end

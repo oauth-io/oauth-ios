@@ -278,7 +278,7 @@
     else if ([params isKindOfClass:[NSData class]])
         postData = params;
     
-    NSString *contentLength = [NSString stringWithFormat:@"%i", [postData length]];
+    NSString *contentLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [self addHeaderWithKey:@"Content-Length" andValue:contentLength];
 
     return (postData);

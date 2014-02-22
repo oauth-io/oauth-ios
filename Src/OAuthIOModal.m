@@ -174,21 +174,23 @@ NSString *_host;
 
 }
 
-- (void)showWithProvider:(NSString *)provider
+- (void)showWithProvider:(NSString *)provider {
+    [self showWithProvider:provider options:nil];
+}
+
+- (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options
 {
-    [_oauth redirectWithProvider:provider andUrl:_callback_url success:^(NSData *data, NSHTTPURLResponse *httpResponse){
-        
-        [_rootViewController presentViewController:self animated:YES completion:^{
-            
-            [_browser loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:httpResponse.URL];
-            
-        }];
-        
-    } error:^(NSError *error) {
-        
-        if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
-            [self.delegate didFailWithOAuthIOError:error];
-    }];
+    [_oauth redirectWithProvider:provider
+                          andUrl:_callback_url
+                      andOptions:options
+                         success:^(NSData *data, NSHTTPURLResponse *httpResponse){
+                             [_rootViewController presentViewController:self animated:YES completion:^{
+                                 [_browser loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:httpResponse.URL];
+                             }];
+                         } error:^(NSError *error) {
+                             if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
+                                 [self.delegate didFailWithOAuthIOError:error];
+                         }];
 }
 
 #pragma mark - UIWebView delegate method

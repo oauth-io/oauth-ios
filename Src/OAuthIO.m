@@ -38,18 +38,35 @@ NSString *_key;
     return (self);
 }
 
-- (void)redirectWithProvider:(NSString *)provider andUrl:(NSString *)url success:(OAuthIOSuccessBlock)success error:(OAuthIOErrorBlock)error
+- (void)redirectWithProvider:(NSString *)provider
+                      andUrl:(NSString *)url
+                  andOptions:(NSDictionary*)options
+                     success:(OAuthIOSuccessBlock)success
+                       error:(OAuthIOErrorBlock)error
 {
     _success = [success copy];
     _error = [error copy];
+    NSString *optionString = options? [NSString stringWithFormat:@"&opts=%@",[OAuthIO dictionaryToJSON:options]]
+            : @"";
     
-    NSString *queryString = [[NSString alloc] initWithFormat:@"%@/%@?k=%@&redirect_uri=%@", [NSString stringWithFormat:@"%@/auth", kOAUTHIO_URL], provider, _key, url];
+    NSString *queryString = [[NSString alloc] initWithFormat:@"%@/%@?k=%@%@&redirect_uri=%@", [NSString stringWithFormat:@"%@/auth", kOAUTHIO_URL], provider, _key, optionString, url];
     
     _req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:queryString]];
     [_req setValue:@"(iPhone; iPad) AppleWebKit" forHTTPHeaderField:@"User-Agent"];
     _connection = [[NSURLConnection alloc] initWithRequest:_req delegate:self];
     [_connection start];
 }
+
++(NSString*)dictionaryToJSON:(NSDictionary*)dictionary {
+    NSMutableString *retval = [@"{" mutableCopy];
+    for (NSString *key in [dictionary allKeys]) {
+        NSString *value = dictionary[key];
+        [retval appendString:[NSString stringWithFormat:@"\"%@\":\"%@\",", key, value]];
+    }
+    [retval replaceCharactersInRange:NSMakeRange([retval length]-1, 1) withString:@"}"];
+    return [OAuthIORequest encodeURL:retval];
+}
+
 
 #pragma mark NSURLConnexion delegate methods
 

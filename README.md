@@ -47,7 +47,10 @@ Put #import "OAuthIOModal.h" in your source file and don't forget to implement t
     ...
 
     OAuthIOModal oauthioModal = [[OAuthIOModal alloc] initWithKey:@"Public key" delegate:self];
-    [oauthioModal showForProvider:@"github"];
+    [oauthioModal showWithProvider:@"github"];
+    
+    // Or use this if a state parameter needs to be passed through:
+    //[oauthioModal showWithProvider:@"github" options:@{@"state": @"STATE_VALUE"}];
 
     ...
 Implement these delegate methods in your ViewController
