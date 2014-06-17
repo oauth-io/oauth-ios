@@ -464,6 +464,7 @@
 				710D9ED919507E4D00FA70A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		710D9EDA19507E4D00FA70A1 /* Build configuration list for PBXNativeTarget "OAuthiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +473,7 @@
 				710D9EDC19507E4D00FA70A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
