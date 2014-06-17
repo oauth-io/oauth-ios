@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface OAuthiOS : NSObject
-
-@end
+#import <Src/OAuthIoRequest.h>
+#import <Src/OAuthIoData.h>
+#import <Src/OAuthIoModal.h>

@@ -9,13 +9,21 @@
 /* Begin PBXBuildFile section */
 		710D9EB819507E4D00FA70A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D9EB719507E4D00FA70A1 /* Foundation.framework */; };
 		710D9EBD19507E4D00FA70A1 /* OAuthiOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710D9EBC19507E4D00FA70A1 /* OAuthiOS.h */; };
-		710D9EBF19507E4D00FA70A1 /* OAuthiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9EBE19507E4D00FA70A1 /* OAuthiOS.m */; };
 		710D9EC619507E4D00FA70A1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D9EC519507E4D00FA70A1 /* XCTest.framework */; };
 		710D9EC719507E4D00FA70A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D9EB719507E4D00FA70A1 /* Foundation.framework */; };
 		710D9EC919507E4D00FA70A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D9EC819507E4D00FA70A1 /* UIKit.framework */; };
 		710D9ECC19507E4D00FA70A1 /* libOAuthiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D9EB419507E4D00FA70A1 /* libOAuthiOS.a */; };
 		710D9ED219507E4D00FA70A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710D9ED019507E4D00FA70A1 /* InfoPlist.strings */; };
 		710D9ED419507E4D00FA70A1 /* OAuthiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9ED319507E4D00FA70A1 /* OAuthiOSTests.m */; };
+		710D9EDE19507F1300FA70A1 /* OAuthiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9EBC19507E4D00FA70A1 /* OAuthiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		710D9EE919507F3800FA70A1 /* OAuthIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9EE019507F3800FA70A1 /* OAuthIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		710D9EEA19507F3800FA70A1 /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9EE119507F3800FA70A1 /* OAuthIO.m */; };
+		710D9EEB19507F3800FA70A1 /* OAuthIOData.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9EE219507F3800FA70A1 /* OAuthIOData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		710D9EEC19507F3800FA70A1 /* OAuthIOData.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9EE319507F3800FA70A1 /* OAuthIOData.m */; };
+		710D9EED19507F3800FA70A1 /* OAuthIOModal.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9EE419507F3800FA70A1 /* OAuthIOModal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		710D9EEE19507F3800FA70A1 /* OAuthIOModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9EE519507F3800FA70A1 /* OAuthIOModal.m */; };
+		710D9EEF19507F3800FA70A1 /* OAuthIORequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9EE719507F3800FA70A1 /* OAuthIORequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		710D9EF019507F3800FA70A1 /* OAuthIORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9EE819507F3800FA70A1 /* OAuthIORequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,13 +54,21 @@
 		710D9EB719507E4D00FA70A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		710D9EBB19507E4D00FA70A1 /* OAuthiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OAuthiOS-Prefix.pch"; sourceTree = "<group>"; };
 		710D9EBC19507E4D00FA70A1 /* OAuthiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAuthiOS.h; sourceTree = "<group>"; };
-		710D9EBE19507E4D00FA70A1 /* OAuthiOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OAuthiOS.m; sourceTree = "<group>"; };
 		710D9EC419507E4D00FA70A1 /* OAuthiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OAuthiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		710D9EC519507E4D00FA70A1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		710D9EC819507E4D00FA70A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		710D9ECF19507E4D00FA70A1 /* OAuthiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OAuthiOSTests-Info.plist"; sourceTree = "<group>"; };
 		710D9ED119507E4D00FA70A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		710D9ED319507E4D00FA70A1 /* OAuthiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OAuthiOSTests.m; sourceTree = "<group>"; };
+		710D9EE019507F3800FA70A1 /* OAuthIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIO.h; sourceTree = "<group>"; };
+		710D9EE119507F3800FA70A1 /* OAuthIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIO.m; sourceTree = "<group>"; };
+		710D9EE219507F3800FA70A1 /* OAuthIOData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOData.h; sourceTree = "<group>"; };
+		710D9EE319507F3800FA70A1 /* OAuthIOData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOData.m; sourceTree = "<group>"; };
+		710D9EE419507F3800FA70A1 /* OAuthIOModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOModal.h; sourceTree = "<group>"; };
+		710D9EE519507F3800FA70A1 /* OAuthIOModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOModal.m; sourceTree = "<group>"; };
+		710D9EE619507F3800FA70A1 /* OAuthIOModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthIOModal.xib; sourceTree = "<group>"; };
+		710D9EE719507F3800FA70A1 /* OAuthIORequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIORequest.h; sourceTree = "<group>"; };
+		710D9EE819507F3800FA70A1 /* OAuthIORequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIORequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +126,8 @@
 		710D9EB919507E4D00FA70A1 /* OAuthiOS */ = {
 			isa = PBXGroup;
 			children = (
+				710D9EDF19507F3800FA70A1 /* Src */,
 				710D9EBC19507E4D00FA70A1 /* OAuthiOS.h */,
-				710D9EBE19507E4D00FA70A1 /* OAuthiOS.m */,
 				710D9EBA19507E4D00FA70A1 /* Supporting Files */,
 			);
 			path = OAuthiOS;
@@ -143,7 +159,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		710D9EDF19507F3800FA70A1 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				710D9EE019507F3800FA70A1 /* OAuthIO.h */,
+				710D9EE119507F3800FA70A1 /* OAuthIO.m */,
+				710D9EE219507F3800FA70A1 /* OAuthIOData.h */,
+				710D9EE319507F3800FA70A1 /* OAuthIOData.m */,
+				710D9EE419507F3800FA70A1 /* OAuthIOModal.h */,
+				710D9EE519507F3800FA70A1 /* OAuthIOModal.m */,
+				710D9EE619507F3800FA70A1 /* OAuthIOModal.xib */,
+				710D9EE719507F3800FA70A1 /* OAuthIORequest.h */,
+				710D9EE819507F3800FA70A1 /* OAuthIORequest.m */,
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		710D9EDD19507F0500FA70A1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				710D9EEF19507F3800FA70A1 /* OAuthIORequest.h in Headers */,
+				710D9EEB19507F3800FA70A1 /* OAuthIOData.h in Headers */,
+				710D9EED19507F3800FA70A1 /* OAuthIOModal.h in Headers */,
+				710D9EE919507F3800FA70A1 /* OAuthIO.h in Headers */,
+				710D9EDE19507F1300FA70A1 /* OAuthiOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		710D9EB319507E4D00FA70A1 /* OAuthiOS */ = {
@@ -153,6 +200,7 @@
 				710D9EB019507E4D00FA70A1 /* Sources */,
 				710D9EB119507E4D00FA70A1 /* Frameworks */,
 				710D9EB219507E4D00FA70A1 /* CopyFiles */,
+				710D9EDD19507F0500FA70A1 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -224,7 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				710D9EBF19507E4D00FA70A1 /* OAuthiOS.m in Sources */,
+				710D9EEA19507F3800FA70A1 /* OAuthIO.m in Sources */,
+				710D9EF019507F3800FA70A1 /* OAuthIORequest.m in Sources */,
+				710D9EEE19507F3800FA70A1 /* OAuthIOModal.m in Sources */,
+				710D9EEC19507F3800FA70A1 /* OAuthIOData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,24 +380,32 @@
 		710D9ED819507E4D00FA70A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/OAuthiOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OAuthiOS/OAuthiOS-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/${PROJECT_NAME}";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
 		};
 		710D9ED919507E4D00FA70A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/OAuthiOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OAuthiOS/OAuthiOS-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/${PROJECT_NAME}";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Release;
 		};
