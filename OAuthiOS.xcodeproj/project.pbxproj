@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		710D9FB31950A32700FA70A1 /* Framework */ = {
+		714050391950B1A400D9283C /* Framework */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 710D9FB41950A32700FA70A1 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildConfigurationList = 7140503A1950B1A400D9283C /* Build configuration list for PBXAggregateTarget "Framework" */;
 			buildPhases = (
-				710D9FB91950A33A00FA70A1 /* ShellScript */,
+				7140503F1950B1B100D9283C /* ShellScript */,
 			);
 			dependencies = (
-				710D9FB81950A33100FA70A1 /* PBXTargetDependency */,
+				7140503E1950B1AC00D9283C /* PBXTargetDependency */,
 			);
 			name = Framework;
 			productName = Framework;
@@ -40,6 +40,10 @@
 		710D9FAF19509ED400FA70A1 /* OAuthIOModal.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9FA019509B2800FA70A1 /* OAuthIOModal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		710D9FB019509ED900FA70A1 /* OAuthIOData.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9F9E19509B2800FA70A1 /* OAuthIOData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		710D9FB119509EDE00FA70A1 /* OAuthIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9F9C19509B2800FA70A1 /* OAuthIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		714050351950B02A00D9283C /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9D19509B2800FA70A1 /* OAuthIO.m */; };
+		714050361950B02A00D9283C /* OAuthIOData.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9F19509B2800FA70A1 /* OAuthIOData.m */; };
+		714050371950B02A00D9283C /* OAuthIOModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9FA119509B2800FA70A1 /* OAuthIOModal.m */; };
+		714050381950B02E00D9283C /* OAuthIORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9FA419509B2800FA70A1 /* OAuthIORequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +54,7 @@
 			remoteGlobalIDString = 710D9EB319507E4D00FA70A1;
 			remoteInfo = OAuthiOS;
 		};
-		710D9FB71950A33100FA70A1 /* PBXContainerItemProxy */ = {
+		7140503D1950B1AC00D9283C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 710D9EAC19507E4D00FA70A1 /* Project object */;
 			proxyType = 1;
@@ -280,7 +284,7 @@
 			targets = (
 				710D9EB319507E4D00FA70A1 /* OAuthiOS */,
 				710D9EC319507E4D00FA70A1 /* OAuthiOSTests */,
-				710D9FB31950A32700FA70A1 /* Framework */,
+				714050391950B1A400D9283C /* Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -312,7 +316,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n";
 		};
-		710D9FB91950A33A00FA70A1 /* ShellScript */ = {
+		7140503F1950B1B100D9283C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -323,7 +327,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\n# If we're already inside this script then die\nif [ -n \"$RW_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport RW_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nRW_FRAMEWORK_NAME=${PROJECT_NAME}\nRW_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nRW_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nRW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nRW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$RW_SDK_PLATFORM\" == \"iphoneos\" ]; then\nRW_OTHER_PLATFORM=iphonesimulator\nelse\nRW_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$RW_SDK_PLATFORM$ ]]; then\nRW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${RW_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${RW_OTHER_PLATFORM}${RW_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$RW_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${RW_FRAMEWORK_LOCATION}\" \"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.framework\"";
+			shellScript = "set -e\n\n# If we're already inside this script then die\nif [ -n \"$RW_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport RW_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nRW_FRAMEWORK_NAME=${PROJECT_NAME}\nRW_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nRW_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nRW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nRW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$RW_SDK_PLATFORM\" == \"iphoneos\" ]; then\nRW_OTHER_PLATFORM=iphonesimulator\nelse\nRW_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$RW_SDK_PLATFORM$ ]]; then\nRW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${RW_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${RW_OTHER_PLATFORM}${RW_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$RW_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${RW_FRAMEWORK_LOCATION}\" \"./Dist/${RW_FRAMEWORK_NAME}.framework\"\n#\"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.framework\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -332,6 +336,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				714050381950B02E00D9283C /* OAuthIORequest.m in Sources */,
+				714050351950B02A00D9283C /* OAuthIO.m in Sources */,
+				714050361950B02A00D9283C /* OAuthIOData.m in Sources */,
+				714050371950B02A00D9283C /* OAuthIOModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,10 +363,10 @@
 			target = 710D9EB319507E4D00FA70A1 /* OAuthiOS */;
 			targetProxy = 710D9ECA19507E4D00FA70A1 /* PBXContainerItemProxy */;
 		};
-		710D9FB81950A33100FA70A1 /* PBXTargetDependency */ = {
+		7140503E1950B1AC00D9283C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 710D9EB319507E4D00FA70A1 /* OAuthiOS */;
-			targetProxy = 710D9FB71950A33100FA70A1 /* PBXContainerItemProxy */;
+			targetProxy = 7140503D1950B1AC00D9283C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -510,14 +518,14 @@
 			};
 			name = Release;
 		};
-		710D9FB51950A32700FA70A1 /* Debug */ = {
+		7140503B1950B1A400D9283C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		710D9FB61950A32700FA70A1 /* Release */ = {
+		7140503C1950B1A400D9283C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -554,14 +562,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		710D9FB41950A32700FA70A1 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+		7140503A1950B1A400D9283C /* Build configuration list for PBXAggregateTarget "Framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				710D9FB51950A32700FA70A1 /* Debug */,
-				710D9FB61950A32700FA70A1 /* Release */,
+				7140503B1950B1A400D9283C /* Debug */,
+				7140503C1950B1A400D9283C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
