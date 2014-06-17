@@ -49,7 +49,7 @@
     return (request);
 }
 
-- (void)prepareAndExec:(NSString *)resource andMethod:(NSString *)method andParams:(id)params
+- (void)prepareAndExec:(NSString *)resource andMethod:(NSString *)method andParams:(id)params andSuccess:(RequestSuccessBlock)success
 {
     if (_data.oauth_token != nil && _data.oauth_token_secret != nil)
     {
@@ -89,8 +89,13 @@
                 [_req setHTTPBody:postData];
         }
         
-        _connection = [[NSURLConnection alloc] initWithRequest:_req delegate:self];
-        [_connection start];
+        [NSURLConnection sendAsynchronousRequest:_req queue:[NSOperationQueue mainQueue]
+                               completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
+                                   NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                   success(output, res);
+                               }];
+
     }
     else if (_data.oauth_token != nil)
     {
@@ -135,39 +140,43 @@
                 [_req setHTTPBody:postData];
         }
         
-        _connection = [[NSURLConnection alloc] initWithRequest:_req delegate:self];
-        [_connection start];
+        [NSURLConnection sendAsynchronousRequest:_req queue:[NSOperationQueue mainQueue]
+                               completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
+                                   NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                   success(output, res);
+                               }];
     }
 }
 
 - (void)get:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success
 {
     _success = [success copy];
-    [self prepareAndExec:resource andMethod:kOAUTHIO_GET_METHOD andParams:params];
+    [self prepareAndExec:resource andMethod:kOAUTHIO_GET_METHOD andParams:params andSuccess:success];
 }
 
 - (void)post:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success
 {
     _success = [success copy];
-    [self prepareAndExec:resource andMethod:kOAUTHIO_POST_METHOD andParams:params];
+    [self prepareAndExec:resource andMethod:kOAUTHIO_POST_METHOD andParams:params andSuccess:success];
 }
 
 - (void)put:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success
 {
     _success = [success copy];
-    [self prepareAndExec:resource andMethod:kOAUTHIO_PUT_METHOD andParams:params];
+    [self prepareAndExec:resource andMethod:kOAUTHIO_PUT_METHOD andParams:params andSuccess:success];
 }
 
 - (void)patch:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success
 {
     _success = [success copy];
-    [self prepareAndExec:resource andMethod:kOAUTHIO_PATCH_METHOD andParams:params];
+    [self prepareAndExec:resource andMethod:kOAUTHIO_PATCH_METHOD andParams:params andSuccess:success];
 }
 
 - (void)delete:(NSString *)resource success:(RequestSuccessBlock)success
 {
     _success = [success copy];
-    [self prepareAndExec:resource andMethod:kOAUTHIO_DELETE_METHOD andParams:nil];
+    [self prepareAndExec:resource andMethod:kOAUTHIO_DELETE_METHOD andParams:nil andSuccess:success];
 }
 
 - (void)addHeaderWithKey:(NSString *)key andValue:(NSString *)value
