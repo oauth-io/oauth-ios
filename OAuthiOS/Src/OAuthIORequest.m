@@ -96,9 +96,8 @@
     {
         if (!_data.request)
         {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"The provider does have an API request description"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//            [alert show];
-            NSLog(@"The provider does have an API request description");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"The provider does have an API request description"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
             return;
         }
         

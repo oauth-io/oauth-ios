@@ -7,6 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OAuthIORequest.h"
-#import "OAuthIOData.h"
-#import "OAuthIOModal.h"
+#import <OAUthiOS/OAuthIORequest.h>
+#import <OAUthiOS/OAuthIOData.h>
+#import <OAuthiOS/OAuthIOModal.h>

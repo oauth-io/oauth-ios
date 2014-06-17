@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Framework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>OAuthiOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>710D9EC319507E4D00FA70A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>710D9FB31950A32700FA70A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
