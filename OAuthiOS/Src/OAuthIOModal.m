@@ -77,12 +77,50 @@ NSString *_host;
     return (self);
 }
 
+- (NSMutableDictionary *)mutableDeepCopy:(NSDictionary *)dictionary
+{
+    NSMutableDictionary * ret = [[NSMutableDictionary alloc]
+                                 initWithCapacity:[dictionary count]];
+    
+    NSMutableArray * array;
+    
+    for (id key in [dictionary allKeys])
+    {
+        array = [(NSArray *)[dictionary objectForKey:key] mutableCopy];
+        [ret setValue:array forKey:key];
+    }
+    
+    return ret;
+}
+
 - (void)getTokens:(NSNotification *)notification
 {
     NSString *url = [OAuthIORequest decodeURL:[NSString stringWithFormat:@"%@", [notification.userInfo objectForKey:@"URL"]]];
 
     NSUInteger start_pos = [url rangeOfString:@"="].location + 1;
     NSString *json = [url substringWithRange:NSMakeRange(start_pos, [url length] - start_pos)];
+    NSDictionary *json_dic = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:nil];
+    NSMutableDictionary *json_dic_m = [self mutableDeepCopy:json_dic];
+    NSLog(@"%@", json);
+    if ([[json_dic_m objectForKey:@"data"] objectForKey:@"expires_in"])
+    {
+        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *expires_in = [[json_dic_m objectForKey:@"data"] objectForKey:@"expires_in"];
+        NSTimeInterval timeInterval = [expires_in doubleValue];
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:timeInterval];
+        NSString *expires = [NSString stringWithFormat:@"%f", [date timeIntervalSince1970]];
+        NSMutableDictionary *json_dic_m_data = [json_dic_m objectForKey:@"data"];
+        [json_dic_m_data setObject:[NSString stringWithFormat:@"%@", expires] forKey:@"expires"];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json_dic_m
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:nil];
+        json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", json);
+    }
+
+    
+    
     NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
 
     if (_options != nil && [[_options objectForKey:@"cache"] isEqualToString:@"true"])
@@ -92,7 +130,6 @@ NSString *_host;
     
         NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *file_url = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"oauthio-%@.json", provider]];
-    
         NSData *data_to_file = [json dataUsingEncoding:NSUTF8StringEncoding];
         [data_to_file writeToFile:file_url atomically:YES];
     }
@@ -228,21 +265,30 @@ NSString *_host;
         if([fileManager fileExistsAtPath:file_url])
         {
             NSString *json = [NSString stringWithContentsOfFile:file_url encoding:NSUTF8StringEncoding error:NULL];
-            @try {
-                OAuthIORequest *request = [self buildRequestObject:json];
-                if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
-                    [self.delegate didReceiveOAuthIOResponse:request];
-            }
-            @catch (NSException *e) {
-                NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-                [errorDetail setValue:@"Could not read cache" forKey:NSLocalizedDescriptionKey];
-                NSError *error = [[NSError alloc] initWithDomain:@"OAuthIO" code:100 userInfo:errorDetail];
+            NSDictionary *json_d = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error:nil];
+            NSNumber *expires = [[json_d objectForKey:@"data"] objectForKey:@"expires"];
+            NSTimeInterval interval = [expires doubleValue];
+            NSDate *expiring_date = [[NSDate alloc] initWithTimeIntervalSince1970:interval];
+            NSDate *now = [[NSDate alloc] init];
+            if ([now compare:expiring_date] == NSOrderedAscending)
+            {
+                @try {
+                    OAuthIORequest *request = [self buildRequestObject:json];
+                    if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
+                        [self.delegate didReceiveOAuthIOResponse:request];
+                }
+                @catch (NSException *e) {
+                    NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+                    [errorDetail setValue:@"Could not read cache" forKey:NSLocalizedDescriptionKey];
+                    NSError *error = [[NSError alloc] initWithDomain:@"OAuthIO" code:100 userInfo:errorDetail];
+                    
+                    if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
+                        [self.delegate didFailWithOAuthIOError:error];
+                }
                 
-                if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
-                    [self.delegate didFailWithOAuthIOError:error];
+                return;
+
             }
-            
-            return;
         }
     }
     
