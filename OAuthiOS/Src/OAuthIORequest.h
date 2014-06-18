@@ -58,6 +58,7 @@ typedef void (^RequestErrorBlock) (NSError *error);
 - (void)put:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
 - (void)patch:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
 - (void)delete:(NSString *)resource success:(RequestSuccessBlock)success;
+- (void)me:(NSArray *)filter success:(RequestSuccessBlock)success;
 
 
 @end

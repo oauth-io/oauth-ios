@@ -30,8 +30,8 @@
     
     if ([[dict objectForKey:@"data"] objectForKey:@"access_token"] != nil)
     {
-        _oauth_token = [[dict objectForKey:@"data"] objectForKey:@"access_token"];
-        [_request setValue:_oauth_token forKey:@"token"];
+        _access_token = [[dict objectForKey:@"data"] objectForKey:@"access_token"];
+        [_request setValue:_access_token forKey:@"token"];
     }
     else if ([[dict objectForKey:@"data"] objectForKey:@"oauth_token"] != nil && [[dict objectForKey:@"data"] objectForKey:@"oauth_token_secret"] != nil)
     {

@@ -33,10 +33,10 @@
 - (id)initWithOAuthIOData:(OAuthIOData *)data
 {
     self = [super init];
-        if (!self)
-
+    if (!self)
+        
         return (nil);
-
+    
     _data = data;
     
     return (self);
@@ -45,7 +45,7 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     OAuthIORequest *request = [[OAuthIORequest allocWithZone:zone] initWithOAuthIOData:_data];
-
+    
     return (request);
 }
 
@@ -57,18 +57,18 @@
         
         if ([resxUrl characterAtIndex:0] != (int)'/')
             [resxUrl insertString:@"/" atIndex:0];
-
+        
         NSString *oauthio_header = [NSString stringWithFormat:@"k=%@&oauthv=1&oauth_token=%@&oauth_token_secret=%@", [OAuthIO getPublicKey], _data.oauth_token, _data.oauth_token_secret];
         
         NSMutableString *url = [NSMutableString stringWithFormat:@"%@/request/%@%@", kOAUTHIO_URL, _data.provider, resxUrl];
-
+        
         if (_data.request_query)
         {
             if ([method isEqualToString:kOAUTHIO_GET_METHOD] && params)
                 [url appendFormat:@"?%@%@", [self buildQueryWithDictionnary:_data.request_query], [self buildQueryWithDictionnary:params]];
             else
                 [url appendFormat:@"?%@", [self buildQueryWithDictionnary:_data.request_query]];
-
+            
         }
         else if ([method isEqualToString:kOAUTHIO_GET_METHOD] && params)
             [url appendFormat:@"?%@", [self buildQueryWithDictionnary:params]];
@@ -95,9 +95,9 @@
                                    NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                    success(output, res);
                                }];
-
+        
     }
-    else if (_data.oauth_token != nil)
+    else if (_data.access_token != nil)
     {
         if (!_data.request)
         {
@@ -105,12 +105,12 @@
         }
         
         NSMutableString *resxUrl = [NSMutableString stringWithString:resource];
-
+        
         if ([resxUrl characterAtIndex:0] != (int)'/')
             [resxUrl insertString:@"/" atIndex:0];
-
+        
         NSMutableString *url = [[NSMutableString alloc] initWithFormat:@"%@%@", [self replaceParam:_data.request_url values:_data.request], resxUrl];
-
+        
         if (_data.request_query)
         {
             if ([method isEqualToString:kOAUTHIO_GET_METHOD] && params)
@@ -121,13 +121,13 @@
         }
         else if ([method isEqualToString:kOAUTHIO_GET_METHOD] && params)
             [url appendFormat:@"?%@", [self buildQueryWithDictionnary:params]];
-
+        
         _req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
         [_req setHTTPMethod:method];
         
         if (_data.request_headers)
             [self buildHeaderWithDictionnary:_data.request_headers];
-
+        
         if ([_headers count] && _headers != nil)
             for (NSString *key in [_headers allKeys])
                 [_req setValue:[_headers objectForKey:key] forHTTPHeaderField:key];
@@ -147,6 +147,49 @@
                                    success(output, res);
                                }];
     }
+}
+
+// Me method to retrieve unified object containing the authenticated user's info
+-(void)execMe:(NSArray *) filter andSuccess:(RequestSuccessBlock)success
+{
+    NSString *oauthio_header = nil;
+    if (_data.oauth_token != nil && _data.oauth_token_secret != nil)
+    {
+        oauthio_header = [NSString stringWithFormat:@"k=%@&oauthv=1&oauth_token=%@&oauth_token_secret=%@", [OAuthIO getPublicKey], _data.oauth_token, _data.oauth_token_secret];
+    }
+    else if (_data.access_token != nil)
+    {
+        oauthio_header = [NSString stringWithFormat:@"k=%@&access_token=%@", [OAuthIO getPublicKey], _data.access_token];
+    }
+    
+    if (oauthio_header == nil)
+        return;
+    
+    NSMutableString *url = [NSMutableString stringWithFormat:@"%@/auth/%@/me", kOAUTHIO_URL, _data.provider];
+    if (_data.request_query)
+    {
+        if (filter != nil)
+            [url appendFormat:@"?%@&filter=%@", [self buildQueryWithDictionnary:_data.request_query], [filter componentsJoinedByString:@","]];
+        else
+            [url appendFormat:@"?%@", [self buildQueryWithDictionnary:_data.request_query]];
+    }
+    else if (filter != nil)
+        [url appendFormat:@"?filter=%@", [filter componentsJoinedByString:@","]];
+    
+    _req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [_req setValue:oauthio_header forHTTPHeaderField:@"oauthio"];
+    [_req setHTTPMethod:kOAUTHIO_GET_METHOD];
+    
+    if ([_headers count] && _headers != nil)
+        for (NSString *key in [_headers allKeys])
+            [_req setValue:[_headers objectForKey:key] forHTTPHeaderField:key];
+    
+    [NSURLConnection sendAsynchronousRequest:_req queue:[NSOperationQueue mainQueue]
+                           completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
+                               NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
+                               NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                               success(output, res);
+                           }];
 }
 
 - (void)get:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success
@@ -179,6 +222,11 @@
     [self prepareAndExec:resource andMethod:kOAUTHIO_DELETE_METHOD andParams:nil andSuccess:success];
 }
 
+- (void)me:(NSArray *)filter success:(RequestSuccessBlock)success
+{
+    [self execMe:filter andSuccess:success];
+}
+
 - (void)addHeaderWithKey:(NSString *)key andValue:(NSString *)value
 {
     if (!_headers)
@@ -200,22 +248,22 @@
     
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\{\\{.*?\\}\\}" options:NSRegularExpressionCaseInsensitive error:&error];
     [regex enumerateMatchesInString:key options:0 range:NSMakeRange(0, [key length]) usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop)
-    {
-        range = NSMakeRange(match.range.location + 2, match.range.length - 4);
-        NSString *value = [dict objectForKey:[key substringWithRange:range]];
-        ret = [regex stringByReplacingMatchesInString:key options:0 range:NSMakeRange(0, [key length]) withTemplate:value];
-    }];
+     {
+         range = NSMakeRange(match.range.location + 2, match.range.length - 4);
+         NSString *value = [dict objectForKey:[key substringWithRange:range]];
+         ret = [regex stringByReplacingMatchesInString:key options:0 range:NSMakeRange(0, [key length]) withTemplate:value];
+     }];
     
     if (ret)
         return (ret);
     
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\{.*?\\}" options:NSRegularExpressionCaseInsensitive error:&error];
     [regex enumerateMatchesInString:key options:0 range:NSMakeRange(0, [key length]) usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop)
-    {
-        range = NSMakeRange(match.range.location + 1, match.range.length - 2);
-        NSString *value = [_data.request_parameters valueForKey:[key substringWithRange:range]];
-        ret = [regex stringByReplacingMatchesInString:key options:0 range:NSMakeRange(0, [key length]) withTemplate:value];
-    }];
+     {
+         range = NSMakeRange(match.range.location + 1, match.range.length - 2);
+         NSString *value = [_data.request_parameters valueForKey:[key substringWithRange:range]];
+         ret = [regex stringByReplacingMatchesInString:key options:0 range:NSMakeRange(0, [key length]) withTemplate:value];
+     }];
     
     return (ret);
 }
@@ -252,7 +300,7 @@
 - (NSString *)buildHeaderWithDictionnary:(NSDictionary *)params
 {
     NSString *query = [[NSString alloc] init];
-
+    
     for (NSString *key in [params allKeys])
     {
         if ([key length] != 0)
@@ -287,7 +335,7 @@
     
     NSString *contentLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [self addHeaderWithKey:@"Content-Length" andValue:contentLength];
-
+    
     return (postData);
 }
 
@@ -321,9 +369,9 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     _headers = nil;
-     NSString *output = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
+    NSString *output = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
     _success(output, _response);
- 
+    
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
