@@ -27,7 +27,7 @@
 #define kOAUTHIO_PATCH_METHOD   @"PATCH"
 #define kOAUTHIO_DELETE_METHOD  @"DELETE"
 
-typedef void (^RequestSuccessBlock) (NSString *output, NSHTTPURLResponse *httpResponse);
+typedef void (^RequestSuccessBlock) (NSDictionary *output, NSHTTPURLResponse *httpResponse);
 typedef void (^RequestErrorBlock) (NSError *error);
 
 @interface OAuthIORequest : NSObject<NSURLConnectionDelegate, NSCopying>

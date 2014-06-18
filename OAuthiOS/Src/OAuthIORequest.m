@@ -93,7 +93,10 @@
                                completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
                                    NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
                                    NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                   success(output, res);
+                                   NSDictionary *output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
+                                                                                               options: NSJSONReadingMutableContainers
+                                                                                                 error: nil];
+                                   success(output_dict, res);
                                }];
         
     }
@@ -144,7 +147,10 @@
                                completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
                                    NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
                                    NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                   success(output, res);
+                                   NSDictionary *output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
+                                                                                               options: NSJSONReadingMutableContainers
+                                                                                                 error: nil];
+                                   success(output_dict, res);
                                }];
     }
 }
@@ -188,7 +194,10 @@
                            completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
                                NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
                                NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                               success(output, res);
+                               NSDictionary *output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
+                                                                                           options: NSJSONReadingMutableContainers
+                                                                                             error: nil];
+                                   success([output_dict objectForKey:@"data"], res);
                            }];
 }
 
