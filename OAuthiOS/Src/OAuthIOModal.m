@@ -80,28 +80,65 @@ NSString *_host;
 - (void)getTokens:(NSNotification *)notification
 {
     NSString *url = [OAuthIORequest decodeURL:[NSString stringWithFormat:@"%@", [notification.userInfo objectForKey:@"URL"]]];
+
     NSUInteger start_pos = [url rangeOfString:@"="].location + 1;
     NSString *json = [url substringWithRange:NSMakeRange(start_pos, [url length] - start_pos)];
+    NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+
+    if (_options != nil && [[_options objectForKey:@"cache"] isEqualToString:@"true"])
+    {
+
+        NSString *provider = [data objectForKey:@"provider"];
+    
+        NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *file_url = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"oauthio-%@.json", provider]];
+    
+        NSData *data_to_file = [json dataUsingEncoding:NSUTF8StringEncoding];
+        [data_to_file writeToFile:file_url atomically:YES];
+    }
+    
+    @try {
+        OAuthIORequest *request = [self buildRequestObject:json];
+        if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
+            [self.delegate didReceiveOAuthIOResponse:request];
+    }
+    @catch (NSException *e) {
+        NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+        [errorDetail setValue:[NSString stringWithFormat:@"%@", e.description] forKey:NSLocalizedDescriptionKey];
+        NSError *error = [[NSError alloc] initWithDomain:@"OAuthIO" code:100 userInfo:errorDetail];
+        if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
+            [self.delegate didFailWithOAuthIOError:error];
+    }
+    
+    
+
+    
+}
+
+- (OAuthIORequest *)buildRequestObject:(NSString *)json
+{
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
-   
+    
     if (jsonData)
     {
         NSError *error = nil;
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-       
+        
         if (error)
         {
-            if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
-                [self.delegate didFailWithOAuthIOError:error];
-
-            return;
+            [NSException raise:@"JSON parser error" format:@"%@", [error description]];
+            return nil;
         }
         
         _oauthio_data = [[OAuthIOData alloc] initWithDictionary:jsonDict];
-        _request = [[OAuthIORequest alloc] initWithOAuthIOData:_oauthio_data];
-       
-        if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
-            [self.delegate didReceiveOAuthIOResponse:_request];
+        OAuthIORequest *request = [[OAuthIORequest alloc] initWithOAuthIOData:_oauthio_data];
+        
+        return request;
+    }
+    else
+    {
+        [NSException raise:@"Invalid data" format:@"The provided string is invalid"];
+        return nil;
     }
 }
 
@@ -180,6 +217,35 @@ NSString *_host;
 
 - (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options
 {
+    _options = options;
+    if (_options != nil && [[_options objectForKey:@"cache"] isEqualToString:@"true"])
+    {
+        // Try to retrieve objects from cache
+        // Needs to be improved to handle expires_in
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *file_url = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"oauthio-%@.json", provider]];
+        if([fileManager fileExistsAtPath:file_url])
+        {
+            NSString *json = [NSString stringWithContentsOfFile:file_url encoding:NSUTF8StringEncoding error:NULL];
+            @try {
+                OAuthIORequest *request = [self buildRequestObject:json];
+                if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
+                    [self.delegate didReceiveOAuthIOResponse:request];
+            }
+            @catch (NSException *e) {
+                NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+                [errorDetail setValue:@"Could not read cache" forKey:NSLocalizedDescriptionKey];
+                NSError *error = [[NSError alloc] initWithDomain:@"OAuthIO" code:100 userInfo:errorDetail];
+                
+                if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
+                    [self.delegate didFailWithOAuthIOError:error];
+            }
+            
+            return;
+        }
+    }
+    
     [_oauth redirectWithProvider:provider
                           andUrl:_callback_url
                       andOptions:options

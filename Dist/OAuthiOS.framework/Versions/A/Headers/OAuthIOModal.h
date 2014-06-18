@@ -33,6 +33,7 @@
 {
 
 @private
+    NSDictionary        *_options;
     OAuthIO             *_oauth;
     OAuthIOData         *_oauthio_data;
     OAuthIORequest      *_request;
