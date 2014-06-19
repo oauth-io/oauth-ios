@@ -107,7 +107,6 @@ NSString *_host;
     NSString *json = [url substringWithRange:NSMakeRange(start_pos, [url length] - start_pos)];
     NSDictionary *json_dic = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:nil];
     NSMutableDictionary *json_dic_m = [self mutableDeepCopy:json_dic];
-    NSLog(@"%@", json);
     if ([[json_dic_m objectForKey:@"data"] objectForKey:@"expires_in"])
     {
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
@@ -122,7 +121,6 @@ NSString *_host;
                                                            options:NSJSONWritingPrettyPrinted
                                                              error:nil];
         json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", json);
     }
 
     
