@@ -38,6 +38,8 @@
 		710D9FAF19509ED400FA70A1 /* OAuthIOModal.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9FA019509B2800FA70A1 /* OAuthIOModal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		710D9FB019509ED900FA70A1 /* OAuthIOData.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9F9E19509B2800FA70A1 /* OAuthIOData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		710D9FB119509EDE00FA70A1 /* OAuthIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9F9C19509B2800FA70A1 /* OAuthIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		711D496119536185002E37BD /* OAuth.io.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 711D496019536185002E37BD /* OAuth.io.podspec */; };
+		711D4963195361E9002E37BD /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 711D4962195361E9002E37BD /* LICENSE */; };
 		714050351950B02A00D9283C /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9D19509B2800FA70A1 /* OAuthIO.m */; };
 		714050361950B02A00D9283C /* OAuthIOData.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9F19509B2800FA70A1 /* OAuthIOData.m */; };
 		714050381950B02E00D9283C /* OAuthIORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9FA419509B2800FA70A1 /* OAuthIORequest.m */; };
@@ -92,6 +94,8 @@
 		710D9FA019509B2800FA70A1 /* OAuthIOModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOModal.h; sourceTree = "<group>"; };
 		710D9FA319509B2800FA70A1 /* OAuthIORequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIORequest.h; sourceTree = "<group>"; };
 		710D9FA419509B2800FA70A1 /* OAuthIORequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIORequest.m; sourceTree = "<group>"; };
+		711D496019536185002E37BD /* OAuth.io.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OAuth.io.podspec; sourceTree = "<group>"; };
+		711D4962195361E9002E37BD /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		71B2666A19534F94006826F1 /* OAuthIOModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOModal.m; sourceTree = "<group>"; };
 		71F3011F1950AB9A004515FC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		71F301201950ABA7004515FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 		710D9EAB19507E4D00FA70A1 = {
 			isa = PBXGroup;
 			children = (
+				711D4962195361E9002E37BD /* LICENSE */,
+				711D496019536185002E37BD /* OAuth.io.podspec */,
 				71F301201950ABA7004515FC /* README.md */,
 				71F3011F1950AB9A004515FC /* .gitignore */,
 				710D9EB919507E4D00FA70A1 /* OAuthiOS */,
@@ -299,6 +305,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				711D4963195361E9002E37BD /* LICENSE in Resources */,
+				711D496119536185002E37BD /* OAuth.io.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
