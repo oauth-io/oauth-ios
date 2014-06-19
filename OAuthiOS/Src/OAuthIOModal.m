@@ -21,12 +21,6 @@
 
 NSString *_host;
 
-+ (void) handleOAuthIOResponse:(NSURL *)url
-{
-    if ([url.host isEqualToString:_host])
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"OAuthIOGetTokens" object:self userInfo:[NSDictionary dictionaryWithObject:url forKey:@"URL"]];
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -99,9 +93,9 @@ NSString *_host;
     return ret;
 }
 
-- (void)getTokens:(NSNotification *)notification
+- (void)getTokens:(NSString *)url
 {
-    NSString *url = [OAuthIORequest decodeURL:[NSString stringWithFormat:@"%@", [notification.userInfo objectForKey:@"URL"]]];
+    url = [OAuthIORequest decodeURL:url];
 
     NSUInteger start_pos = [url rangeOfString:@"="].location + 1;
     NSString *json = [url substringWithRange:NSMakeRange(start_pos, [url length] - start_pos)];
@@ -230,23 +224,10 @@ NSString *_host;
 
 - (BOOL)initCustomCallbackURL
 {
-    NSDictionary *customURLDict = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleURLTypes"] objectAtIndex:0];
-    
-    if (customURLDict)
-    {
-        _scheme = [[customURLDict objectForKey:@"CFBundleURLSchemes"] objectAtIndex:0];
-        _host = [customURLDict objectForKey:@"CFBundleURLName"];
-    }
-    
-    if (_scheme && _host)
-        _callback_url = [[NSString alloc] initWithFormat:@"%@://%@", _scheme, _host];
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OAuthIO" message:@"You must define a custom scheme and an url identifier in your plist configuration file" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        
-        return (NO);
-    }
+
+    _scheme = @"oauthio";
+    _host = @"localhost";
+    _callback_url = [[NSString alloc] initWithFormat:@"%@://%@", _scheme, _host];
     
     return (YES);
 
@@ -311,15 +292,12 @@ NSString *_host;
     
     if (![url.scheme isEqual:@"http"] && ![url.scheme isEqual:@"https"] && ![url.scheme isEqual:@"file"])
     {
-        if ([[UIApplication sharedApplication]canOpenURL:url])
+        if ([url.scheme isEqual:@"oauthio"] && [url.host isEqual:@"localhost"])
         {
-            [[UIApplication sharedApplication]openURL:url];
-            
-            if ([request.URL.host isEqualToString:_host])
-                [self dismissViewControllerAnimated:YES completion:nil];
-
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self getTokens:[url absoluteString]];
             return (NO);
-        } 
+        }
     }
     
     return (YES);

@@ -42,15 +42,13 @@
     NSString            *_scheme;
     NSString            *_callback_url;
     UIViewController    *_rootViewController;
-    UIWebView           *_browser;
+    UIWebView           *_browser;	
     UINavigationBar     *_navigationBar;
     NSUInteger          _navigationBarHeight;
 
 }
 
 @property (weak) id<OAuthIODelegate>   delegate;
-
-+ (void) handleOAuthIOResponse:(NSURL *)url;
 
 - (id)initWithKey:(NSString *)key delegate:(id)delegate;
 - (void)showWithProvider:(NSString *)provider;
