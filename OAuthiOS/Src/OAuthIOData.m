@@ -60,8 +60,14 @@
         if (![key isKindOfClass:[NSDictionary class]] || ![key isKindOfClass:[NSArray class]])
             [_request setValue:[[_request_conf objectForKey:@"parameters"] valueForKey:key] forKey:key];
     }
-
+    _credentials = [dict objectForKey:@"data"];
+    [_credentials setValue:[dict objectForKey:@"provider"] forKeyPath:@"provider"];
     return (self);
+}
+
+-(NSDictionary *)getCredentials
+{
+    return _credentials;
 }
 
 @end

@@ -19,12 +19,9 @@
 #import <Foundation/Foundation.h>
 #import "OAuthIORequest.h"
 
-
-typedef void (^OAuthIOSuccessBlock) (NSData *data, NSHTTPURLResponse *httpResponse);
-typedef void (^OAuthIOErrorBlock) (NSError *error);
-
-@interface OAuthIO : NSObject <NSURLConnectionDelegate>
+@interface OAuthIO : NSObject
 {
+    
 @private
     NSURLConnection     *_connection;
     NSHTTPURLResponse   *_response;
@@ -32,17 +29,12 @@ typedef void (^OAuthIOErrorBlock) (NSError *error);
     NSMutableData       *_responseData;
 }
 
-@property (nonatomic, copy) OAuthIOSuccessBlock success;
-@property (nonatomic, copy) OAuthIOErrorBlock   error;
-
 + (NSString *)getPublicKey;
 
 - (id)initWithKey:(NSString *)key;
-- (void)redirectWithProvider:(NSString *)provider
+- (NSURLRequest *)getOAuthRequest:(NSString *)provider
                       andUrl:(NSString *)url
-                  andOptions:(NSDictionary*)options
-                     success:(OAuthIOSuccessBlock)success
-                       error:(OAuthIOErrorBlock)error;
+                       andOptions:(NSDictionary*)options;
 
 @end
 

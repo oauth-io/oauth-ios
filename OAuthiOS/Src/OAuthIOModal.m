@@ -39,8 +39,14 @@ NSString *_host;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _browser = [[UIWebView alloc] init];
+    [_browser setFrame:CGRectMake(0, _navigationBarHeight, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - _navigationBarHeight - 1)];
+    _browser.autoresizesSubviews = YES;
+    _browser.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    [_browser setDelegate:self];
+    [[self view] addSubview:_browser];
     
-    [_browser setFrame:CGRectMake(0, _navigationBarHeight, _browser.frame.size.width, _browser.frame.size.height - _navigationBarHeight - 1)];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTokens:) name:@"OAuthIOGetTokens" object:nil];
 }
 
@@ -148,7 +154,7 @@ NSString *_host;
     }
     
     
-
+    
     
 }
 
@@ -292,17 +298,11 @@ NSString *_host;
         }
     }
     
-    [_oauth redirectWithProvider:provider
-                          andUrl:_callback_url
-                      andOptions:options
-                         success:^(NSData *data, NSHTTPURLResponse *httpResponse){
-                             [_rootViewController presentViewController:self animated:YES completion:^{
-                                 [_browser loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:httpResponse.URL];
-                             }];
-                         } error:^(NSError *error) {
-                             if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
-                                 [self.delegate didFailWithOAuthIOError:error];
-                         }];
+    NSURLRequest *url = [_oauth getOAuthRequest:provider andUrl:_callback_url andOptions:options];
+    [_rootViewController presentViewController:self animated:YES completion:^{
+        [_browser loadRequest:url];
+    }];
+
 }
 
 #pragma mark - UIWebView delegate method

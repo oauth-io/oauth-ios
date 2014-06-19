@@ -379,13 +379,20 @@
 {
     _headers = nil;
     NSString *output = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
-    _success(output, _response);
+    NSError *error;
+    NSDictionary *output_dict = [NSJSONSerialization JSONObjectWithData:[output dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
+    _success(output_dict, _response);
     
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
     return (nil);
+}
+
+- (NSDictionary *)getCredentials
+{
+    return [_data getCredentials];
 }
 
 @end

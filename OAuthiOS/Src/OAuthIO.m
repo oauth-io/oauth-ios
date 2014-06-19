@@ -38,14 +38,10 @@ NSString *_key;
     return (self);
 }
 
-- (void)redirectWithProvider:(NSString *)provider
+- (NSURLRequest *)getOAuthRequest:(NSString *)provider
                       andUrl:(NSString *)url
                   andOptions:(NSDictionary*)options
-                     success:(OAuthIOSuccessBlock)success
-                       error:(OAuthIOErrorBlock)error
 {
-    _success = [success copy];
-    _error = [error copy];
     NSString *optionString = options? [NSString stringWithFormat:@"&opts=%@",[OAuthIO dictionaryToJSON:options]]
             : @"";
     
@@ -53,8 +49,7 @@ NSString *_key;
     
     _req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:queryString]];
     [_req setValue:@"(iPhone; iPad) AppleWebKit" forHTTPHeaderField:@"User-Agent"];
-    _connection = [[NSURLConnection alloc] initWithRequest:_req delegate:self];
-    [_connection start];
+    return _req;
 }
 
 +(NSString*)dictionaryToJSON:(NSDictionary*)dictionary {
@@ -65,35 +60,6 @@ NSString *_key;
     }
     [retval replaceCharactersInRange:NSMakeRange([retval length]-1, 1) withString:@"}"];
     return [OAuthIORequest encodeURL:retval];
-}
-
-
-#pragma mark NSURLConnexion delegate methods
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    _responseData = [[NSMutableData alloc] init];
-    _response = [response copy];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [_responseData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    _success(_responseData, _response);
-}
-
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
-{
-    return (nil);
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    _error(error);
 }
 
 @end

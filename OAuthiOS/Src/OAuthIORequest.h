@@ -51,6 +51,7 @@ typedef void (^RequestErrorBlock) (NSError *error);
 
 - (id)initWithOAuthIOData:(OAuthIOData *)data;
 - (id)copyWithZone:(NSZone *)zone;
+- (NSDictionary *)getCredentials;
 
 - (void)addHeaderWithKey:(NSString *)key andValue:(NSString *)value;
 - (void)get:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;

@@ -33,8 +33,6 @@
 		710D9EDE19507F1300FA70A1 /* OAuthiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9EBC19507E4D00FA70A1 /* OAuthiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		710D9FA519509B2800FA70A1 /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9D19509B2800FA70A1 /* OAuthIO.m */; };
 		710D9FA619509B2800FA70A1 /* OAuthIOData.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9F19509B2800FA70A1 /* OAuthIOData.m */; };
-		710D9FA719509B2800FA70A1 /* OAuthIOModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9FA119509B2800FA70A1 /* OAuthIOModal.m */; };
-		710D9FA819509B2800FA70A1 /* OAuthIOModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 710D9FA219509B2800FA70A1 /* OAuthIOModal.xib */; };
 		710D9FA919509B2800FA70A1 /* OAuthIORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9FA419509B2800FA70A1 /* OAuthIORequest.m */; };
 		710D9FAD19509EC500FA70A1 /* OAuthIORequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9FA319509B2800FA70A1 /* OAuthIORequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		710D9FAF19509ED400FA70A1 /* OAuthIOModal.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9FA019509B2800FA70A1 /* OAuthIOModal.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,8 +40,8 @@
 		710D9FB119509EDE00FA70A1 /* OAuthIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9F9C19509B2800FA70A1 /* OAuthIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		714050351950B02A00D9283C /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9D19509B2800FA70A1 /* OAuthIO.m */; };
 		714050361950B02A00D9283C /* OAuthIOData.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9F19509B2800FA70A1 /* OAuthIOData.m */; };
-		714050371950B02A00D9283C /* OAuthIOModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9FA119509B2800FA70A1 /* OAuthIOModal.m */; };
 		714050381950B02E00D9283C /* OAuthIORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9FA419509B2800FA70A1 /* OAuthIORequest.m */; };
+		71B2666B19534F94006826F1 /* OAuthIOModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2666A19534F94006826F1 /* OAuthIOModal.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,10 +90,9 @@
 		710D9F9E19509B2800FA70A1 /* OAuthIOData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOData.h; sourceTree = "<group>"; };
 		710D9F9F19509B2800FA70A1 /* OAuthIOData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOData.m; sourceTree = "<group>"; };
 		710D9FA019509B2800FA70A1 /* OAuthIOModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOModal.h; sourceTree = "<group>"; };
-		710D9FA119509B2800FA70A1 /* OAuthIOModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOModal.m; sourceTree = "<group>"; };
-		710D9FA219509B2800FA70A1 /* OAuthIOModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthIOModal.xib; sourceTree = "<group>"; };
 		710D9FA319509B2800FA70A1 /* OAuthIORequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIORequest.h; sourceTree = "<group>"; };
 		710D9FA419509B2800FA70A1 /* OAuthIORequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIORequest.m; sourceTree = "<group>"; };
+		71B2666A19534F94006826F1 /* OAuthIOModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOModal.m; sourceTree = "<group>"; };
 		71F3011F1950AB9A004515FC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		71F301201950ABA7004515FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -198,8 +195,7 @@
 				710D9F9E19509B2800FA70A1 /* OAuthIOData.h */,
 				710D9F9F19509B2800FA70A1 /* OAuthIOData.m */,
 				710D9FA019509B2800FA70A1 /* OAuthIOModal.h */,
-				710D9FA119509B2800FA70A1 /* OAuthIOModal.m */,
-				710D9FA219509B2800FA70A1 /* OAuthIOModal.xib */,
+				71B2666A19534F94006826F1 /* OAuthIOModal.m */,
 				710D9FA319509B2800FA70A1 /* OAuthIORequest.h */,
 				710D9FA419509B2800FA70A1 /* OAuthIORequest.m */,
 			);
@@ -233,6 +229,7 @@
 				710D9EB219507E4D00FA70A1 /* CopyFiles */,
 				710D9EDD19507F0500FA70A1 /* Headers */,
 				710D9FAC19509D8300FA70A1 /* Prepare framework */,
+				71B26673195353CF006826F1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -295,7 +292,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				710D9ED219507E4D00FA70A1 /* InfoPlist.strings in Resources */,
-				710D9FA819509B2800FA70A1 /* OAuthIOModal.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71B26673195353CF006826F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,10 +339,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71B2666B19534F94006826F1 /* OAuthIOModal.m in Sources */,
 				714050381950B02E00D9283C /* OAuthIORequest.m in Sources */,
 				714050351950B02A00D9283C /* OAuthIO.m in Sources */,
 				714050361950B02A00D9283C /* OAuthIOData.m in Sources */,
-				714050371950B02A00D9283C /* OAuthIOModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +354,6 @@
 				710D9ED419507E4D00FA70A1 /* OAuthiOSTests.m in Sources */,
 				710D9FA619509B2800FA70A1 /* OAuthIOData.m in Sources */,
 				710D9FA519509B2800FA70A1 /* OAuthIO.m in Sources */,
-				710D9FA719509B2800FA70A1 /* OAuthIOModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +571,7 @@
 				7140503C1950B1A400D9283C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -20,6 +20,7 @@
 @interface OAuthIOData : NSObject
 
 - (id)initWithDictionary:(NSDictionary *)dict;
+- (NSDictionary *)getCredentials;
 
 @property (nonatomic, strong) NSMutableDictionary     *request;
 @property (nonatomic, strong) NSDictionary            *request_parameters;
@@ -32,5 +33,8 @@
 @property (nonatomic, strong) NSString                *access_token;
 @property (nonatomic, strong) NSString                *request_url;
 @property (nonatomic, strong) NSString                *provider;
+@property (nonatomic, strong) NSDictionary            *credentials;
+
+
 
 @end
