@@ -1,90 +1,247 @@
-# OAuth.io iOS SDK
+OAuth.io iOS SDK
+=======================
 
-This is the official iOS SDK for [OAuth.io](https://oauth.io) !
+This is the iOS SDK for [OAuth.io](https://oauth.io). OAuth.io allows you to integrate **100+ providers** really easily in your web app, without worrying about each provider's OAuth specific implementation.
 
- * Supported on iOS 5 or later
+Installation
+============
 
-### License
+Getting the SDK
+---------------
 
-See LICENSE file
+To install this SDK in your iOS app, you can either:
 
-### OAuth.io Requirements and Set-Up
+- Get the framework from Cocoapods
+- Install the framework by hand in XCode
 
-To use this plugin you will need to make sure you've registered your OAuth.io app and have a public key (https://oauth.io/docs)
+Both options are pretty simple.
 
-### Installation
+**Installing via Cocoapods**
 
-Copy the source files within oauth-ios/Src to your project.
+To install the SDK via Cocoapods, just add this entry to your Podfile:
 
-### Usage
+```ruby
+pod "OAuth.io"
+```
 
-To get the response from OAuthIO service, you must define a custom scheme and identifier in your plist file. (e.g myappname://localhost)
+Then run the following command:
 
-![custom_scheme](https://oauth.io/img/custom_scheme.png)
+```sh
+$ pod update
+```
 
-Implement the method bellow in your AppDelegate File 
+This will get the framework for you and install it as a project dependency. Once that's done you can get on with the code.
 
-    - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-    {
-       [OAuthIOModal handleOAuthIOResponse:url];
-       return (YES);
-    }
+**Installing the framework manually**
 
-Put #import "OAuthIOModal.h" in your source file and don't forget to implement the OAuthIO protocol then in your ViewController instanciate the OAuthIOModal object
+The framework is available in this repository as the `Dist/OAuthiOS.framework` file. To add it as a dependency in your projet in XCode, follow this procedure:
+- click on the project name in the Documents explorer
+- go to **Build phases**
+- open the **Link Binary with Libraries** section
+- click on the **+** button
+- click on **Add other...**
+- Select the `OAuthiOS.framework`
+- Click on **Add**
 
-    // ViewController.h
-    // ----------------
+Then you can get on with the code.
 
-    #import <UIKit/UIKit.h>
-    #import "OAuthIOModal.h"
- 
-    @interface ViewController : UIViewController<OAuthIODelegate>
+Usage
+=====
+
+This SDK allows you to show a popup to let the user log in for a given OAuth provider.
+
+Before you start, make sure you have an account on [OAuth.io](https://oauth.io), and that you have created an app configured with the provider you need in your dashboard. To use this SDK, you'll need that app's public key.
+
+Includes
+--------
+
+There is only one header file you need to include to use this SDK:
+
+`#import <OAuthiOS/OAuthiOS.h>`
+
+This header contains references to all the classes you will need to use it.
+
+Authentication process
+------------------------------------------------
+
+To initialize the SDK, you need to create an `OAuthIOModal` intance, and initialize it with your app public key and a delegate, which must implement the `OAuthIODelegate` protocol. This delegate will let you handle the results of the authentication process in the form of a request object, that will also allow you to perform API calls.
+
+This protocol requires that your delegate implements the following methods:
+
+```Objective-C
+// Handles the results of a successful authentication
+- (void)didReceiveOAuthIOResponse:(OAuthIORequest *)request;
+
+// Handle errors in the case of an unsuccessful authentication
+- (void)didFailWithOAuthIOError:(NSError *)error;
+```
+
+If you are using a `UIViewController` as delegate, its header file will look  like this:
+
+```Objective-C
+#import <UIKit/UIKit.h>
+#import <OAUthiOS/OAuthiOS.h>
+@interface MyViewController : UIViewController<OAuthIODelegate>
+//[...]
+@end
+```
+
+In that view controller, when you need to show the popup, you can initialize the `OAuthIOModal` object with your public key like this:
+
+```Objective-C
+OAuthIOModal *oauthioModal = [[OAuthIOModal alloc] initWithKey:@"your_app_public_key" delegate:self];
+```
+
+Then you can show the popup for the needed provider like this:
+
+```Objective-C
+[oauthioModal showWithProvider:@"facebook"];
+```
+
+Once the user has logged in to the provider and accepted the permissions you asked in your [OAuth.io Dashboard](https://oauth.io/dashboard), the `didReceiveOAuthIOResponse` method is called, and you can use the `request` object to either retrieve the access token with the `getCredentials` method and work with it on your own, or perform API calls with the `get|post|put|patch|del|me` methods.
+
+**Using the cache**
+
+It is possible to cache the results of the authentication step to prevent the popup from showing everytime the user relaunches the app. To do that, you need to pass the cache option to the modal like this:
+
+```Objective-C
+NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
+[options setObject:@"true" forKey:@"cache"];
+[oauthioModal showWithProvider:@"facebook" options:options];
+```
+
+**Getting the user credentials**
+
+Once you got the `request` object from the authentication process, you can retrieve the user credentials (access_token for OAuth 2, oauth_token and oauth_token_secret for OAuth 1) like this:
+
+```
+NSDictionary *credentials = [request getCredentials];
+```
+
+Performing API calls
+--------------------
+
+The `request` object allows you to perform API calls using the standard HTTP methods `GET`, `POST`, `PUT`, `PATCH`, `DELETE`. You can also retrieve a unified object containing the user's information (name, email, etc.) by using the `me` method.
+
+**GET Request**
+
+Let's say that the provider exposes an endpoint on the `/blogpost/:id` URL, that returns the title and the content of a blogpost:
+
+```Objective-C
+[_request get:@"/blogpost/1" success:^(NSDictionary *output, NSString *body, NSHTTPURLResponse *httpResponse)
+ {
+     NSLog(@"%@", [output objectForKey: @"title"]);
+     NSLog(@"%@", [output objectForKey: @"content"]);
+ }];
+```
+
+**POST Request**
+
+Let's say that the provider exposes an endpoint on the `/comment` URL, that waits for a POST request containing the field `content` with the content of a comment, and returns the field `id`, containing the id of the new comment:
+
+```Objective-C
+NSMutableDictionary *fields = [[NSMutableDictionary alloc] init];
+[fields setObject: @"Nice blogpost" forKey:@"content"];
+
+[_request post:@"/blogpost/1" withParams:fields success:^(NSDictionary *output, NSString *body, NSHTTPURLResponse *httpResponse)
+ {
+     NSLog(@"%@", [output objectForKey: @"id"]);
+ }];
+```
+
+**PUT Request**
+
+Let's say that the provider exposes an endpoint on the `/comment/:id` URL, that waits for a PUT request containing the field `content` with the content to edit a comment, and returns `true` if the edition worked:
+
+```Objective-C
+NSMutableDictionary *fields = [[NSMutableDictionary alloc] init];
+[fields setObject: @"Nice blogpost" forKey:@"content"];
+
+[_request put:@"/blogpost/1" withParams:fields success:^(NSDictionary *output, NSString *body, NSHTTPURLResponse *httpResponse)
+ {
+    //Should print "true"
+     NSLog(@"%@", body);
+ }];
+```
+
+**PATCH Request**
+
+Let's say that the provider exposes an endpoint on the `/comment/:id` URL, that waits for a PATCH request containing the field `content` with the content to edit a comment, and returns `true` if the edition worked:
+
+```Objective-C
+NSMutableDictionary *fields = [[NSMutableDictionary alloc] init];
+[fields setObject: @"Nice blogpost" forKey:@"content"];
+
+[_request patch:@"/blogpost/1" withParams:fields success:^(NSDictionary *output, NSString *body, NSHTTPURLResponse *httpResponse)
+ {
+    //Should print "true"
+     NSLog(@"%@", body);
+ }];
+```
+
+**DELETE Request**
+
+Let's say that the provider exposes an endpoint on the `/blogpost/:id` URL, that waits for a `DELETE` request to remove the blogpost, and returns `true` if the deletion worked:
+
+```Objective-C
+[_request del:@"/blogpost/1" success:^(NSDictionary *output, NSString *body, NSHTTPURLResponse *httpResponse)
+ {
+     //Should print "true"
+     NSLog(@"%@", body);
+ }];
+```
+
+**Getting the user's information**
+
+If you need to get a dictionary containing unified fields with the user's information, regardless of the provider's implementation (e.g. get a `firstname` field, wether the provider returns `first-name`, `first_name` or `firstName`), you can call the `me` method like this:
+
+```Objective-C
+[_request me:nil success:^(NSDictionary *output, NSString *body, NSHTTPURLResponse *httpResponse)
+ {
+     NSLog(@"name: %@", [output objectForKey:@"name"]);
+ }];
+```
+
+The fields that are not mapped into unified fields are still available in the one called `raw`.
+
+You can filter the fields returned by this method by passing a `NSArray` containing a list of fields:
+
+```Objective-C
+ NSMutableArray *filter = [[NSMutableArray alloc] init];
+[filter addObject:@"name"];
+[filter addObject:@"email"];
+[_request me:filter success:^(NSDictionary *output, NSString *body, NSHTTPURLResponse *httpResponse)
+ {
+    NSLog(@"name: %@", [output objectForKey:@"name"]);
+ }];
+```
+
+Contributing
+============
+
+**Issues**
+
+Feel free to post issues if you have problems while using this SDK.
+
+**Pull requests**
+
+You are welcome to fork and make pull requests. We appreciate the time you spend working on this project and we will be happy to review your code and merge it if it brings nice improvements :)
+
+If you want to do a pull request, please mind these simple rules :
+
+- *One feature per pull request*
+- *Write lear commit messages*
+- *Unit test your feature* : if it's a bug fix for example, write a test that proves the bug exists and that your fix resolves it.
+- *Write a clear description of the pull request*
+
+If you do so, we'll be able to merge your pull request more quickly :)
+
+License
+=======
+
+This SDK is published under the Apache2 License.
 
 
-    // ViewController.m
-    // ----------------
+---------------------
 
-    ...
-
-    OAuthIOModal oauthioModal = [[OAuthIOModal alloc] initWithKey:@"Public key" delegate:self];
-    [oauthioModal showWithProvider:@"github"];
-    
-    // Or use this if a state parameter needs to be passed through:
-    //[oauthioModal showWithProvider:@"github" options:@{@"state": @"STATE_VALUE"}];
-
-    ...
-Implement these delegate methods in your ViewController
-
-    #pragma mark OAuthIO delegate methods
-
-    - (void)didReceiveOAuthIOResponse:(OAuthIORequest *)request
-    {
-       NSDictionary *params = @{@"name": @"New repo"};
-            
-      [request setContentType:@"json"]; // Github specification - This line convert params to JSON 
-
-      [request post:@"/user/repos" withParams:params success:^(NSString *output, NSHTTPURLResponse *httpResponse)           
-      { 
-         NSLog(@"output:%@, status code:%i\n", output, httpResponse.statusCode);
-      }];
-
-    }
-
-    - (void)didFailWithOAuthIOError:(NSError *)error
-    {
-      NSLog(@"Error : %@\n", error.description);
-    }
-
-### Available methods for OAuthIORequest object
-
-    - (void)addHeaderWithKey:(NSString *)key andValue:(NSString *)value;
-
-    - (void)get:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
-
-    - (void)post:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
-
-    - (void)put:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
-
-    - (void)patch:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
-
-    - (void)delete:(NSString *)resource success:(RequestSuccessBlock)success;
+More information is available in [oauth.io documentation](http://oauth.io/#/docs)
