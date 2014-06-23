@@ -201,6 +201,11 @@
                            }];
 }
 
+- (void)get:(NSString *)resource success:(RequestSuccessBlock)success
+{
+    [self get:resource withParams:nil success:success];
+}
+
 - (void)get:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success
 {
     _success = [success copy];
@@ -225,10 +230,15 @@
     [self prepareAndExec:resource andMethod:kOAUTHIO_PATCH_METHOD andParams:params andSuccess:success];
 }
 
-- (void)delete:(NSString *)resource success:(RequestSuccessBlock)success
+- (void)del:(NSString *)resource success:(RequestSuccessBlock)success
 {
     _success = [success copy];
     [self prepareAndExec:resource andMethod:kOAUTHIO_DELETE_METHOD andParams:nil andSuccess:success];
+}
+
+- (void)delete:(NSString *)resource success:(RequestSuccessBlock)success
+{
+    [self del:resource success:success];
 }
 
 - (void)me:(NSArray *)filter success:(RequestSuccessBlock)success
