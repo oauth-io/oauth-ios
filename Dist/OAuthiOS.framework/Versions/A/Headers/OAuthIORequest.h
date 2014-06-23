@@ -54,11 +54,13 @@ typedef void (^RequestErrorBlock) (NSError *error);
 - (NSDictionary *)getCredentials;
 
 - (void)addHeaderWithKey:(NSString *)key andValue:(NSString *)value;
+- (void)get:(NSString *)resource success:(RequestSuccessBlock)success;
 - (void)get:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
 - (void)post:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
 - (void)put:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
 - (void)patch:(NSString *)resource withParams:(id)params success:(RequestSuccessBlock)success;
-- (void)delete:(NSString *)resource success:(RequestSuccessBlock)success;
+- (void)del:(NSString *)resource success:(RequestSuccessBlock)success;
+- (void)delete:(NSString *)resource success:(RequestSuccessBlock)success; //DEPRECATED
 - (void)me:(NSArray *)filter success:(RequestSuccessBlock)success;
 
 

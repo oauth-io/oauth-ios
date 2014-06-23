@@ -52,5 +52,7 @@
 - (id)initWithKey:(NSString *)key delegate:(id)delegate andOptions:(NSDictionary *) options;
 - (void)showWithProvider:(NSString *)provider;
 - (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options;
+- (BOOL) clearCache;
+- (BOOL) clearCacheForProvider:(NSString *)provider;
 
 @end
