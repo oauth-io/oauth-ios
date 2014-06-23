@@ -33,7 +33,10 @@ NSString *_host;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _browser = [[UIWebView alloc] init];
+    if (_browser == nil) {
+        _browser = [[UIWebView alloc] init];
+    }
+
     [_browser setFrame:CGRectMake(0, _navigationBarHeight, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - _navigationBarHeight - 1)];
     _browser.autoresizesSubviews = YES;
     _browser.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
@@ -56,6 +59,11 @@ NSString *_host;
 
 - (id)initWithKey:(NSString *)key delegate:(id)delegate
 {
+    return [self initWithKey:key delegate:delegate andOptions:nil];
+}
+
+- (id)initWithKey:(NSString *)key delegate:(id)delegate andOptions:(NSDictionary *) options
+{
     self = [super init];
     
     if (!self || ![self initCustomCallbackURL])
@@ -63,17 +71,23 @@ NSString *_host;
     
     [self setDelegate:delegate];
     
+    if (options != nil) {
+        if ([options objectForKey:@"webview"] != nil) {
+            _browser = [options objectForKey:@"webview"];
+        }
+    }
+    
     _key = key;
     _oauth = [[OAuthIO alloc] initWithKey:_key];
     _rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-
+    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
         _navigationBarHeight = NAVIGATION_BAR_HEIGHT_IOS7_OR_LATER;
     else
         _navigationBarHeight = NAVIGATION_BAR_HEIGHT_IOS6_OR_EARLIER;
     
     [self initNavigationBar];
-
+    
     return (self);
 }
 
@@ -281,7 +295,6 @@ NSString *_host;
     [_rootViewController presentViewController:self animated:YES completion:^{
         [_browser loadRequest:url];
     }];
-
 }
 
 #pragma mark - UIWebView delegate method

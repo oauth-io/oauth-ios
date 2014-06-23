@@ -23,10 +23,8 @@
 #define NAVIGATION_BAR_HEIGHT_IOS6_OR_EARLIER   44
 
 @protocol OAuthIODelegate <NSObject>
-
 - (void)didReceiveOAuthIOResponse:(OAuthIORequest *)request;
 - (void)didFailWithOAuthIOError:(NSError *)error;
-
 @end
 
 @interface OAuthIOModal : UIViewController<UIWebViewDelegate>
@@ -51,6 +49,7 @@
 @property (weak) id<OAuthIODelegate>   delegate;
 
 - (id)initWithKey:(NSString *)key delegate:(id)delegate;
+- (id)initWithKey:(NSString *)key delegate:(id)delegate andOptions:(NSDictionary *) options;
 - (void)showWithProvider:(NSString *)provider;
 - (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options;
 

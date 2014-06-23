@@ -40,6 +40,8 @@
         
         [_request setValue:_oauth_token forKey:@"oauth_token"];
         [_request setValue:_oauth_token_secret forKey:@"oauth_token_secret"];
+    } else {
+        [NSException raise:@"Wrong credentials" format:@"A problem occured with the credentials data initialization"];
     }
     
     _request_conf = [[dict objectForKey:@"data"] objectForKey:@"request"];
