@@ -290,8 +290,17 @@ NSString *_host;
             }
         }
     }
-    
+
     NSURLRequest *url = [_oauth getOAuthRequest:provider andUrl:_callback_url andOptions:options];
+    if ([[_options objectForKey:@"clear-popup-cache"]  isEqual: @"true"]) {
+//        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [storage cookies]) {
+            [storage deleteCookie:cookie];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     [_rootViewController presentViewController:self animated:YES completion:^{
         [_browser loadRequest:url];
     }];
