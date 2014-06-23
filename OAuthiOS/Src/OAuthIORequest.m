@@ -93,10 +93,16 @@
                                completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
                                    NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
                                    NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                   NSDictionary *output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
-                                                                                               options: NSJSONReadingMutableContainers
-                                                                                                 error: nil];
-                                   success(output_dict, res);
+                                   NSDictionary *output_dict = nil;
+                                   @try {
+                                       output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
+                                                                                     options: NSJSONReadingMutableContainers
+                                                                                       error: nil];
+                                   } @catch (NSException *e) {
+                                       
+                                   } @finally {
+                                       success([output_dict objectForKey:@"data"], output, res);
+                                   }
                                }];
         
     }
@@ -147,10 +153,16 @@
                                completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
                                    NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
                                    NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                   NSDictionary *output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
-                                                                                               options: NSJSONReadingMutableContainers
-                                                                                                 error: nil];
-                                   success(output_dict, res);
+                                   NSDictionary *output_dict = nil;
+                                   @try {
+                                       output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
+                                                                                     options: NSJSONReadingMutableContainers
+                                                                                       error: nil];
+                                   } @catch (NSException *e) {
+                                       
+                                   } @finally {
+                                       success([output_dict objectForKey:@"data"], output, res);
+                                   }
                                }];
     }
 }
@@ -194,10 +206,16 @@
                            completionHandler:  ^(NSURLResponse *response, NSData *data, NSError *error) {
                                NSHTTPURLResponse *res = (NSHTTPURLResponse*) response;
                                NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                               NSDictionary *output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
-                                                                                           options: NSJSONReadingMutableContainers
-                                                                                             error: nil];
-                                   success([output_dict objectForKey:@"data"], res);
+                               NSDictionary *output_dict = nil;
+                               @try {
+                                   output_dict = [NSJSONSerialization JSONObjectWithData: [output dataUsingEncoding:NSUTF8StringEncoding]
+                                                                                               options: NSJSONReadingMutableContainers
+                                                                                                 error: nil];
+                               } @catch (NSException *e) {
+                                   
+                               } @finally {
+                                   success([output_dict objectForKey:@"data"], output, res);
+                               }
                            }];
 }
 
@@ -391,7 +409,7 @@
     NSString *output = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
     NSError *error;
     NSDictionary *output_dict = [NSJSONSerialization JSONObjectWithData:[output dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
-    _success(output_dict, _response);
+    _success(output_dict, output, _response);
     
 }
 
