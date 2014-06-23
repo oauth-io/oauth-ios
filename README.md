@@ -64,7 +64,7 @@ This header contains references to all the classes you will need to use it.
 Authentication process
 ------------------------------------------------
 
-To initialize the SDK, you need to create an `OAuthIOModal` intance, and initialize it with your app public key and a delegate, which must implement the `OAuthIODelegate` protocol. This delegate will let you handle the results of the authentication process in the form of a request object, that will also allow you to perform API calls.
+To initialize the SDK, you need to create an `OAuthIOModal` instance, and initialize it with your app public key and a delegate, which must implement the `OAuthIODelegate` protocol. This delegate will let you handle the results of the authentication process in the form of a request object, that will also allow you to perform API calls.
 
 This protocol requires that your delegate implements the following methods:
 
