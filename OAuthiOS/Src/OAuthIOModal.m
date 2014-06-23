@@ -297,6 +297,38 @@ NSString *_host;
     }];
 }
 
+- (BOOL) clearCache
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSArray *dirContents = [fileManager contentsOfDirectoryAtPath:cachePath error:nil];
+    NSPredicate *fltr = [NSPredicate predicateWithFormat:@"self BEGINSWITH 'oauthio-'"];
+    NSPredicate *fltr2 = [NSPredicate predicateWithFormat:@"self ENDSWITH '.json'"];
+    NSArray *files = [dirContents filteredArrayUsingPredicate:fltr];
+    files = [files filteredArrayUsingPredicate:fltr2];
+    for (NSString *file in files) {
+        NSString *file_url = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", file]];
+        if([fileManager fileExistsAtPath:file_url])
+        {
+            return [fileManager removeItemAtPath:file_url error:nil];
+        }
+    }
+
+    return NO;
+}
+
+- (BOOL) clearCacheForProvider:(NSString *)provider
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *file_url = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"oauthio-%@.json", provider]];
+    if([fileManager fileExistsAtPath:file_url])
+    {
+        return [fileManager removeItemAtPath:file_url error:nil];
+    }
+    return NO;
+}
+
 #pragma mark - UIWebView delegate method
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
