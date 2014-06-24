@@ -3,6 +3,8 @@ OAuth.io iOS SDK
 
 This is the iOS SDK for [OAuth.io](https://oauth.io). OAuth.io allows you to integrate **100+ providers** really easily in your web app, without worrying about each provider's OAuth specific implementation.
 
+You can learn about how to integrate this framework in your project by following the easy steps of our github-based tutorial: [Start here :)](https://github.com/oauth-io/sdk-ios-tutorial)
+
 Installation
 ============
 
