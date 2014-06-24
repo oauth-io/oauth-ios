@@ -366,4 +366,12 @@ NSString *_host;
         [self.delegate didFailWithOAuthIOError:error];
 }
 
+-(BOOL) cacheAvailableForProvider:(NSString *)provider
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *file_url = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"oauthio-%@.json", provider]];
+    return [fileManager fileExistsAtPath:file_url];
+}
+
 @end

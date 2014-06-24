@@ -54,5 +54,6 @@
 - (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options;
 - (BOOL) clearCache;
 - (BOOL) clearCacheForProvider:(NSString *)provider;
+- (BOOL) cacheAvailableForProvider:(NSString *)provider;
 
 @end
