@@ -351,7 +351,6 @@
             }
         }
     }
-    
     return (query);
 }
 
@@ -362,8 +361,9 @@
     {
         if (_contentType != nil)
             postData = [[self formatFromContentType:params] dataUsingEncoding:NSUTF8StringEncoding];
-        else
-            postData = [[OAuthIORequest encodeURL:[self buildQueryWithDictionnary:params]] dataUsingEncoding:NSUTF8StringEncoding];
+        else{
+            postData = [[self buildQueryWithDictionnary:params] dataUsingEncoding:NSUTF8StringEncoding];
+        }
     }
     else if ([params isKindOfClass:[NSString class]])
         postData = [params dataUsingEncoding:NSUTF8StringEncoding];
@@ -372,7 +372,8 @@
     
     NSString *contentLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [self addHeaderWithKey:@"Content-Length" andValue:contentLength];
-    
+
+
     return (postData);
 }
 
