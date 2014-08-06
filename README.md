@@ -218,6 +218,42 @@ You can filter the fields returned by this method by passing a `NSArray` contain
  }];
 ```
 
+Notes on the server-side flow
+=============================
+
+If you're planning to use OAuth.io from your back-end thanks to one of our server-side SDKs, the usage of this SDK is a bit different.
+
+First, a little reminder of the server-side flow, in which all API calls are performed server-side, as well as authentication (thanks to a code retrieved in the front-end). The server-side flow involves the following steps:
+
+- Retrieving of a state token from your back-end in your front-end
+- Launching the authentication popup in the front-end, with the state token, gives back a code
+- Sending the code back to the back-end
+- Authenticating in the back-end thanks to the code
+- Performing API calls in the back-end
+
+Thus, in your back-end, you need two endpoints:
+
+- one for the state token (GET)
+- one for the authentication (POST with the code as parameter)
+
+In the iOS SDK, the calls to these endpoints are performed automatically. All you need to do is give their URLs to the `showWithProvider` method like this:
+
+```Objective-C
+[_oauthioModal showWithProvider:@"facebook" options:options stateTokenUrl:@"http://example/state/url" authUrl:@"http://example/auth/url"];
+```
+
+This will first call the state URL, then show the authentication popup to the user, get the code, and finally send the code to the authentication URL.
+
+To know when the process is done, you need to add the following methods to your OAuthIODelegate class:
+
+```Objective-C
+- (void)didAuthenticateServerSide:(NSString *)body andResponse:(NSURLResponse *) response;
+- (void)didFailAuthenticationServerSide:(NSString *)body andResponse:(NSURLResponse *)response andError:(NSError *)error;
+```
+
+The first one will catches a successfull authentication (which usually means the authentication URL returned "200 OK") and give you the body and response objects it got from that URL. gThe second one will catch errors (state token not found, unsucessfull authentication).
+
+
 Contributing
 ============
 
