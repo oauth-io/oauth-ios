@@ -26,6 +26,8 @@
 - (void)didReceiveOAuthIOResponse:(OAuthIORequest *)request;
 - (void)didFailWithOAuthIOError:(NSError *)error;
 - (void)didReceiveOAuthIOCode:(NSString *)code;
+- (void)didAuthenticateServerSide:(NSString *)body andResponse:(NSURLResponse *) response;
+- (void)didFailAuthenticationServerSide:(NSString *)body andResponse:(NSURLResponse *)response andError:(NSError *)error;
 @end
 
 @interface OAuthIOModal : UIViewController<UIWebViewDelegate>
@@ -49,11 +51,14 @@
 }
 @property NSMutableArray *saved_cookies;
 @property (weak) id<OAuthIODelegate>   delegate;
+@property NSURLSession *session;
+@property NSString *authUrl;
 
 - (id)initWithKey:(NSString *)key delegate:(id)delegate;
 - (id)initWithKey:(NSString *)key delegate:(id)delegate andOptions:(NSDictionary *) options;
 - (void)showWithProvider:(NSString *)provider;
 - (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options;
+- (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options stateTokenUrl:(NSString*) stateUrl authUrl:(NSString*) authUrl;
 - (BOOL) clearCache;
 - (BOOL) clearCacheForProvider:(NSString *)provider;
 - (BOOL) cacheAvailableForProvider:(NSString *)provider;
