@@ -251,7 +251,7 @@ To know when the process is done, you need to add the following methods to your 
 - (void)didFailAuthenticationServerSide:(NSString *)body andResponse:(NSURLResponse *)response andError:(NSError *)error;
 ```
 
-The first one will catches a successfull authentication (which usually means the authentication URL returned "200 OK") and give you the body and response objects it got from that URL. gThe second one will catch errors (state token not found, unsucessfull authentication).
+The first one will catches a successfull authentication (which usually means the authentication URL returned "200 OK") and give you the body and response objects it got from that URL. The second one will catch errors (state token not found, unsucessfull authentication).
 
 
 Contributing
