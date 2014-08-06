@@ -25,6 +25,7 @@
 @protocol OAuthIODelegate <NSObject>
 - (void)didReceiveOAuthIOResponse:(OAuthIORequest *)request;
 - (void)didFailWithOAuthIOError:(NSError *)error;
+- (void)didReceiveOAuthIOCode:(NSString *)code;
 @end
 
 @interface OAuthIOModal : UIViewController<UIWebViewDelegate>
@@ -43,9 +44,10 @@
     UIWebView           *_browser;	
     UINavigationBar     *_navigationBar;
     NSUInteger          _navigationBarHeight;
+    
 
 }
-
+@property NSMutableArray *saved_cookies;
 @property (weak) id<OAuthIODelegate>   delegate;
 
 - (id)initWithKey:(NSString *)key delegate:(id)delegate;

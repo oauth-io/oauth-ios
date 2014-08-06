@@ -18,7 +18,6 @@
 #import "OAuthIOModal.h"
 
 @implementation OAuthIOModal
-
 NSString *_host;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -146,10 +145,25 @@ NSString *_host;
         [data_to_file writeToFile:file_url atomically:YES];
     }
     
+    if (_saved_cookies != nil) {
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in _saved_cookies) {
+            [storage setCookie:cookie];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+   
+    
     @try {
         OAuthIORequest *request = [self buildRequestObject:json];
-        if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
-            [self.delegate didReceiveOAuthIOResponse:request];
+        if ([[request getCredentials] objectForKey:@"code"] != nil) {
+            if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOCode:)])
+                [self.delegate didReceiveOAuthIOCode:[[request getCredentials] objectForKey:@"code"]];
+        } else {
+            if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
+                [self.delegate didReceiveOAuthIOResponse:request];
+        }
     }
     @catch (NSException *e) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
@@ -296,8 +310,10 @@ NSString *_host;
 //        [[NSURLCache sharedURLCache] removeAllCachedResponses];
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        _saved_cookies = [[NSMutableArray alloc] init];
         for (cookie in [storage cookies]) {
             [storage deleteCookie:cookie];
+            [_saved_cookies addObject:cookie];
         }
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
