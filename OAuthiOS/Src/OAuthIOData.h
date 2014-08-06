@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSDictionary            *request_conf;
 
 @property (nonatomic, strong) NSString                *oauth_token;
+@property (nonatomic, strong) NSString                *code;
 @property (nonatomic, strong) NSString                *oauth_token_secret;
 @property (nonatomic, strong) NSString                *access_token;
 @property (nonatomic, strong) NSString                *request_url;

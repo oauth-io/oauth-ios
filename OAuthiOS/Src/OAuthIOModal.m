@@ -18,7 +18,6 @@
 #import "OAuthIOModal.h"
 
 @implementation OAuthIOModal
-
 NSString *_host;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -146,10 +145,63 @@ NSString *_host;
         [data_to_file writeToFile:file_url atomically:YES];
     }
     
+    if (_saved_cookies != nil) {
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in _saved_cookies) {
+            [storage setCookie:cookie];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+   
+    
     @try {
         OAuthIORequest *request = [self buildRequestObject:json];
-        if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
-            [self.delegate didReceiveOAuthIOResponse:request];
+        if ([[request getCredentials] objectForKey:@"code"] != nil && _authUrl != nil) {
+            //Signing in to the selected URL, giving back the response
+            
+            NSString *code  = [[request getCredentials] objectForKey:@"code"];
+            NSString *post = [NSString stringWithFormat:@"code=%@", code];
+            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+            NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+            NSMutableURLRequest *state_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_authUrl]
+                                                                         cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                                     timeoutInterval:60.0];
+            [state_request setHTTPMethod:@"POST"];
+            [state_request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [state_request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            [state_request setHTTPBody:postData];
+            
+            [[_session dataTaskWithRequest:state_request
+                         completionHandler:^(NSData *data,
+                                             NSURLResponse *response,
+                                             NSError *error) {
+                             NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+                             NSString *body = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                             if ([httpResponse statusCode] == 200) {
+                                 if ([self.delegate respondsToSelector:@selector(didAuthenticateServerSide:andResponse:)])
+                                     [self.delegate didAuthenticateServerSide:body andResponse:response];
+                             } else {
+                                 NSDictionary *userInfo = @{
+                                                            NSLocalizedDescriptionKey: NSLocalizedString(@"Operation was unsuccessful.", nil),
+                                                            NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"The authentication endpoint did not return 200 OK.", nil),
+                                                            NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Are you using the right authentication endpoint?", nil)
+                                                            };
+                                 NSError *error = [NSError errorWithDomain:@"com.oauthio.error"
+                                                                      code:-1
+                                                                  userInfo:userInfo];
+                                 if ([self.delegate respondsToSelector:@selector(didFailAuthenticationServerSide:andResponse:andError:)])
+                                     [self.delegate didFailAuthenticationServerSide:body andResponse:response andError:error];
+                             }
+                         }] resume];
+
+        } else if ([[request getCredentials] objectForKey:@"code"] != nil) {
+            if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOCode:)])
+                [self.delegate didReceiveOAuthIOCode:[[request getCredentials] objectForKey:@"code"]];
+        }else {
+            if ([self.delegate respondsToSelector:@selector(didReceiveOAuthIOResponse:)])
+                [self.delegate didReceiveOAuthIOResponse:request];
+        }
     }
     @catch (NSException *e) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
@@ -251,6 +303,38 @@ NSString *_host;
     [self showWithProvider:provider options:nil];
 }
 
+- (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options stateTokenUrl:(NSString*) stateUrl authUrl:(NSString*) authUrl;
+{
+    _session = [NSURLSession sharedSession];
+    _authUrl = authUrl;
+    [[_session dataTaskWithURL:[NSURL URLWithString:stateUrl]
+             completionHandler:^(NSData *data,
+                                 NSURLResponse *response,
+                                 NSError *error) {
+                 NSString *body = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                 NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                 if (dictionary != nil && [dictionary objectForKey:@"token"] != nil) {
+
+                     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                     NSMutableDictionary *options_mut = [options mutableCopy];
+                     [options_mut setObject:[dictionary objectForKey:@"token"] forKey:@"state"];
+                     [self showWithProvider:provider options:options_mut];
+                 } else {
+                     NSDictionary *userInfo = @{
+                                                NSLocalizedDescriptionKey: NSLocalizedString(@"Operation was unsuccessful.", nil),
+                                                NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"The state token could not be retrieved.", nil),
+                                                NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Are you using the right state token retrieval endpoint?", nil)
+                                                };
+                     NSError *error = [NSError errorWithDomain:@"com.oauthio.error"
+                                                          code:-1
+                                                      userInfo:userInfo];
+                     if ([self.delegate respondsToSelector:@selector(didFailAuthenticationServerSide:andResponse:andError:)])
+                         [self.delegate didFailAuthenticationServerSide:body andResponse:response andError:error];
+                 }
+
+             }] resume];
+}
+
 - (void)showWithProvider:(NSString *)provider options:(NSDictionary*)options
 {
     _options = options;
@@ -293,11 +377,12 @@ NSString *_host;
 
     NSURLRequest *url = [_oauth getOAuthRequest:provider andUrl:_callback_url andOptions:options];
     if ([[_options objectForKey:@"clear-popup-cache"]  isEqual: @"true"]) {
-//        [[NSURLCache sharedURLCache] removeAllCachedResponses];
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        _saved_cookies = [[NSMutableArray alloc] init];
         for (cookie in [storage cookies]) {
             [storage deleteCookie:cookie];
+            [_saved_cookies addObject:cookie];
         }
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
