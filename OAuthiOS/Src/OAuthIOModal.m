@@ -351,8 +351,17 @@ NSString *_host;
             NSDictionary *json_d = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error:nil];
             NSNumber *expires = [[json_d objectForKey:@"data"] objectForKey:@"expires"];
             NSTimeInterval interval = [expires doubleValue];
-            NSDate *expiring_date = [[NSDate alloc] initWithTimeIntervalSince1970:interval];
             NSDate *now = [[NSDate alloc] init];
+            NSDate *expiring_date;
+            
+            if (expires != nil) {
+                expiring_date = [[NSDate alloc] initWithTimeIntervalSince1970:interval];
+            } else {
+                // If no expiry date is available, defaults to one hour
+                interval = 3600;
+                expiring_date = [[NSDate alloc] initWithTimeIntervalSinceNow:interval];
+            }
+
             if ([now compare:expiring_date] == NSOrderedAscending)
             {
                 @try {
