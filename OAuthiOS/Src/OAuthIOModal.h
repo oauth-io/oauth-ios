@@ -28,6 +28,7 @@
 - (void)didReceiveOAuthIOCode:(NSString *)code;
 - (void)didAuthenticateServerSide:(NSString *)body andResponse:(NSURLResponse *) response;
 - (void)didFailAuthenticationServerSide:(NSString *)body andResponse:(NSURLResponse *)response andError:(NSError *)error;
+- (void)didDismissModalDialog;
 @end
 
 @interface OAuthIOModal : UIViewController<UIWebViewDelegate>

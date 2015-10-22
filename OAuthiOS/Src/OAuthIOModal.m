@@ -396,6 +396,7 @@ NSString *_host;
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     [_rootViewController presentViewController:self animated:YES completion:^{
+
         [_browser loadRequest:url];
     }];
 }
@@ -442,7 +443,11 @@ NSString *_host;
     {
         if ([url.scheme isEqual:@"oauthio"] && [url.host isEqual:@"localhost"])
         {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:^(){
+                if([self.delegate respondsToSelector:@selector(didDismissModalDialog)]) {
+                    [self.delegate didDismissModalDialog];
+                }
+            }];
             [self getTokens:[url absoluteString]];
             return (NO);
         }
