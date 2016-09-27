@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "OAuth.io"
-  s.version      = "1.2.1"
+  s.version      = "1.2.2"
   s.summary      = "OAuth that just works!"
 
   s.description  = <<-DESC
@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/oauth-io/oauth-ios.git", :tag => "1.2.1" }
+  s.source       = { :git => "https://github.com/oauth-io/oauth-ios.git", :tag => "1.2.2" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

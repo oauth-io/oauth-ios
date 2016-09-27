@@ -23,9 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		710D9EB819507E4D00FA70A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D9EB719507E4D00FA70A1 /* Foundation.framework */; };
-		710D9EBD19507E4D00FA70A1 /* OAuthiOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710D9EBC19507E4D00FA70A1 /* OAuthiOS.h */; };
 		710D9ECC19507E4D00FA70A1 /* libOAuthiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D9EB419507E4D00FA70A1 /* libOAuthiOS.a */; };
-		710D9ED219507E4D00FA70A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710D9ED019507E4D00FA70A1 /* InfoPlist.strings */; };
 		710D9EDE19507F1300FA70A1 /* OAuthiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9EBC19507E4D00FA70A1 /* OAuthiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		710D9FA519509B2800FA70A1 /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9D19509B2800FA70A1 /* OAuthIO.m */; };
 		710D9FA619509B2800FA70A1 /* OAuthIOData.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9F19509B2800FA70A1 /* OAuthIOData.m */; };
@@ -36,14 +34,12 @@
 		710D9FB119509EDE00FA70A1 /* OAuthIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 710D9F9C19509B2800FA70A1 /* OAuthIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		711D496119536185002E37BD /* OAuth.io.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 711D496019536185002E37BD /* OAuth.io.podspec */; };
 		711D4963195361E9002E37BD /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 711D4962195361E9002E37BD /* LICENSE */; };
-		711D49AA1953A0AC002E37BD /* OAuthIODataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 711D49A91953A0AC002E37BD /* OAuthIODataTests.m */; };
-		711E97F81954650A00CEF381 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 711E97F71954650A00CEF381 /* libOCMock.a */; };
-		711E97FA1954707500CEF381 /* OAuthIOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 711E97F91954707500CEF381 /* OAuthIOTests.m */; };
-		711E97FC19547D9F00CEF381 /* OAuthIOModalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 711E97FB19547D9F00CEF381 /* OAuthIOModalTests.m */; };
 		714050351950B02A00D9283C /* OAuthIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9D19509B2800FA70A1 /* OAuthIO.m */; };
 		714050361950B02A00D9283C /* OAuthIOData.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9F9F19509B2800FA70A1 /* OAuthIOData.m */; };
 		714050381950B02E00D9283C /* OAuthIORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 710D9FA419509B2800FA70A1 /* OAuthIORequest.m */; };
 		71B2666B19534F94006826F1 /* OAuthIOModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2666A19534F94006826F1 /* OAuthIOModal.m */; };
+		DF1F19341D9B1121009D0853 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF1F19331D9B1121009D0853 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DF1F19361D9B1145009D0853 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF1F19351D9B1145009D0853 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +66,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				710D9EBD19507E4D00FA70A1 /* OAuthiOS.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +77,6 @@
 		710D9EBB19507E4D00FA70A1 /* OAuthiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OAuthiOS-Prefix.pch"; sourceTree = "<group>"; };
 		710D9EBC19507E4D00FA70A1 /* OAuthiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAuthiOS.h; sourceTree = "<group>"; };
 		710D9EC419507E4D00FA70A1 /* OAuthiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OAuthiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		710D9EC519507E4D00FA70A1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		710D9EC819507E4D00FA70A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		710D9ECF19507E4D00FA70A1 /* OAuthiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OAuthiOSTests-Info.plist"; sourceTree = "<group>"; };
-		710D9ED119507E4D00FA70A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		710D9F9C19509B2800FA70A1 /* OAuthIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIO.h; sourceTree = "<group>"; };
 		710D9F9D19509B2800FA70A1 /* OAuthIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIO.m; sourceTree = "<group>"; };
 		710D9F9E19509B2800FA70A1 /* OAuthIOData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthIOData.h; sourceTree = "<group>"; };
@@ -95,13 +86,11 @@
 		710D9FA419509B2800FA70A1 /* OAuthIORequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIORequest.m; sourceTree = "<group>"; };
 		711D496019536185002E37BD /* OAuth.io.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OAuth.io.podspec; sourceTree = "<group>"; };
 		711D4962195361E9002E37BD /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		711D49A91953A0AC002E37BD /* OAuthIODataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIODataTests.m; sourceTree = "<group>"; };
-		711E97F71954650A00CEF381 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = usr/lib/libOCMock.a; sourceTree = "<group>"; };
-		711E97F91954707500CEF381 /* OAuthIOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOTests.m; sourceTree = "<group>"; };
-		711E97FB19547D9F00CEF381 /* OAuthIOModalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOModalTests.m; sourceTree = "<group>"; };
 		71B2666A19534F94006826F1 /* OAuthIOModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthIOModal.m; sourceTree = "<group>"; };
 		71F3011F1950AB9A004515FC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		71F301201950ABA7004515FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		DF1F19331D9B1121009D0853 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DF1F19351D9B1145009D0853 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF1F19361D9B1145009D0853 /* XCTest.framework in Frameworks */,
+				DF1F19341D9B1121009D0853 /* UIKit.framework in Frameworks */,
 				710D9EB819507E4D00FA70A1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,7 +108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				711E97F81954650A00CEF381 /* libOCMock.a in Frameworks */,
 				710D9ECC19507E4D00FA70A1 /* libOAuthiOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,7 +123,6 @@
 				71F301201950ABA7004515FC /* README.md */,
 				71F3011F1950AB9A004515FC /* .gitignore */,
 				710D9EB919507E4D00FA70A1 /* OAuthiOS */,
-				710D9ECD19507E4D00FA70A1 /* OAuthiOSTests */,
 				710D9EB619507E4D00FA70A1 /* Frameworks */,
 				710D9EB519507E4D00FA70A1 /* Products */,
 			);
@@ -151,10 +140,9 @@
 		710D9EB619507E4D00FA70A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				711E97F71954650A00CEF381 /* libOCMock.a */,
+				DF1F19351D9B1145009D0853 /* XCTest.framework */,
+				DF1F19331D9B1121009D0853 /* UIKit.framework */,
 				710D9EB719507E4D00FA70A1 /* Foundation.framework */,
-				710D9EC519507E4D00FA70A1 /* XCTest.framework */,
-				710D9EC819507E4D00FA70A1 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,26 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				710D9EBB19507E4D00FA70A1 /* OAuthiOS-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		710D9ECD19507E4D00FA70A1 /* OAuthiOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				710D9ECE19507E4D00FA70A1 /* Supporting Files */,
-				711D49A91953A0AC002E37BD /* OAuthIODataTests.m */,
-				711E97F91954707500CEF381 /* OAuthIOTests.m */,
-				711E97FB19547D9F00CEF381 /* OAuthIOModalTests.m */,
-			);
-			path = OAuthiOSTests;
-			sourceTree = "<group>";
-		};
-		710D9ECE19507E4D00FA70A1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				710D9ECF19507E4D00FA70A1 /* OAuthiOSTests-Info.plist */,
-				710D9ED019507E4D00FA70A1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -274,7 +242,7 @@
 		710D9EAC19507E4D00FA70A1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = OAuth.io;
 			};
 			buildConfigurationList = 710D9EAF19507E4D00FA70A1 /* Build configuration list for PBXProject "OAuthiOS" */;
@@ -301,7 +269,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				710D9ED219507E4D00FA70A1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,11 +330,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				710D9FA919509B2800FA70A1 /* OAuthIORequest.m in Sources */,
-				711D49AA1953A0AC002E37BD /* OAuthIODataTests.m in Sources */,
 				710D9FA619509B2800FA70A1 /* OAuthIOData.m in Sources */,
 				710D9FA519509B2800FA70A1 /* OAuthIO.m in Sources */,
-				711E97FA1954707500CEF381 /* OAuthIOTests.m in Sources */,
-				711E97FC19547D9F00CEF381 /* OAuthIOModalTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,17 +350,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		710D9ED019507E4D00FA70A1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				710D9ED119507E4D00FA70A1 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		710D9ED519507E4D00FA70A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -411,12 +364,18 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -429,7 +388,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -448,19 +407,24 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -530,6 +494,7 @@
 					"-force_load",
 					"$(PROJECT_DIR)/usr/lib/libOCMock.a",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oauthio.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -563,6 +528,7 @@
 					"-force_load",
 					"$(PROJECT_DIR)/usr/lib/libOCMock.a",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oauthio.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};

@@ -163,7 +163,7 @@ NSString *_host;
             NSString *code  = [[request getCredentials] objectForKey:@"code"];
             NSString *post = [NSString stringWithFormat:@"code=%@", code];
             NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-            NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+            NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
             NSMutableURLRequest *state_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_authUrl]
                                                                          cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                                      timeoutInterval:60.0];
