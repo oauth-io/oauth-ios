@@ -14,7 +14,7 @@ Getting the SDK
 To install this SDK in your iOS app, you can either:
 
 - Get the framework from Cocoapods
-- Install the framework by hand in XCode
+- Install the framework by hand in Xcode
 
 Both options are pretty simple.
 
@@ -36,7 +36,7 @@ This will get the framework for you and install it as a project dependency. Once
 
 **Installing the framework manually**
 
-The framework is available in this repository as the `Dist/OAuthiOS.framework` file. To add it as a dependency in your projet in XCode, follow this procedure:
+The framework is available in this repository as the `Dist/OAuthiOS.framework` file. To add it as a dependency in your projet in Xcode, follow this procedure:
 - click on the project name in the Documents explorer
 - go to **Build phases**
 - open the **Link Binary with Libraries** section
