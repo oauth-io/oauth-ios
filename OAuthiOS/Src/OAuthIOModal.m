@@ -250,6 +250,8 @@ NSString *_host;
 {
     _navigationBar = [[UINavigationBar alloc] init];
     [_navigationBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth];
+    _navigationBar.translucent = NO;
+    _navigationBar.barTintColor = [UIColor lightGrayColor];
     
     UINavigationItem *navItem = [[UINavigationItem alloc] initWithTitle:@""];
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:nil action:@selector(cancelOperation)];
@@ -266,7 +268,12 @@ NSString *_host;
 - (void)drawNavigationBar
 {
     CGFloat width = CGRectGetWidth(self.view.bounds);
-    [_navigationBar setFrame:CGRectMake(0, 0, width, _navigationBarHeight)];
+    UIView *statusbar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
+    [statusbar setAutoresizingMask: UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
+                                    UIViewAutoresizingFlexibleWidth];
+    statusbar.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:statusbar];
+    [_navigationBar setFrame:CGRectMake(0, 20, width, _navigationBarHeight)];
     [self.view addSubview:_navigationBar];
 }
 
