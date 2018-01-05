@@ -163,7 +163,7 @@ NSString *_host;
             NSString *code  = [[request getCredentials] objectForKey:@"code"];
             NSString *post = [NSString stringWithFormat:@"code=%@", code];
             NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-            NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+            NSString *postLength = [NSString stringWithFormat:@"%tu", [postData length]];
             NSMutableURLRequest *state_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_authUrl]
                                                                          cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                                      timeoutInterval:60.0];
@@ -291,7 +291,7 @@ NSString *_host;
     if ([self.delegate respondsToSelector:@selector(didFailWithOAuthIOError:)])
         [self.delegate didFailWithOAuthIOError:error];    
 
-    [_browser loadHTMLString:nil baseURL:nil];
+    [_browser loadHTMLString:@"" baseURL:[NSURL URLWithString:@""]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
