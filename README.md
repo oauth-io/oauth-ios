@@ -262,7 +262,7 @@ In brief:
 
 1. Update the 'version' in OAuth.io.podspec file
 2. Tag the master branch with:
-* `git tag <VERSION> -m 'Version Message'
+* `git tag {{VERSION}} -m 'Version Message'
 * `git push origin --tags
 3. Check if your Pod passess verification:
 * `pod spec lint OAuth.io.podspec`

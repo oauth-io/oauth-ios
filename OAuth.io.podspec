@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "OAuth.io"
-  s.version      = "1.2.3"
+  s.version      = "1.2.4"
   s.summary      = "OAuth that just works!"
 
   s.description  = <<-DESC
