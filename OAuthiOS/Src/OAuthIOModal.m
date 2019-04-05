@@ -38,10 +38,11 @@ NSString *_host;
 
     [_browser setFrame:CGRectMake(0, _navigationBarHeight, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - _navigationBarHeight - 1)];
     _browser.autoresizesSubviews = YES;
-    _browser.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    _browser.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    _browser.scalesPageToFit = true;
+    _browser.contentMode = UIViewContentModeScaleAspectFit;
     [_browser setDelegate:self];
     [[self view] addSubview:_browser];
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTokens:) name:@"OAuthIOGetTokens" object:nil];
 }
