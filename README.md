@@ -253,6 +253,42 @@ To know when the process is done, you need to add the following methods to your 
 
 The first one will catches a successfull authentication (which usually means the authentication URL returned "200 OK") and give you the body and response objects it got from that URL. The second one will catch errors (state token not found, unsucessfull authentication).
 
+Building
+========
+
+There is excellent instruction on building/updating your cocoapod [https://sebastiandobrincu.com/blog/how-to-update-your-cocoapods-library-version](here)
+
+In brief:
+
+1. Update the 'version' in OAuth.io.podspec file
+2. Tag the master branch with:
+* `git tag <VERSION> -m 'Version Message'
+* `git push origin --tags
+3. Check if your Pod passess verification:
+* `pod spec lint OAuth.io.podspec`
+4. Register a Trunk session
+* `pod trunk register name@company 'Firstname Lastname' --description='OAuth.io'`
+5. Push new Pod version using trunk:
+* `pod trunk push OAuth.io.podspec`
+
+Errors
+======
+
+When building, if you get:
+
+```
+ pod spec lint OAuth.io.podspec 
+
+ -> OAuth.io (1.2.3)
+    - ERROR | [iOS] unknown: Encountered an unknown error (/usr/bin/xcrun simctl list -j devices
+
+xcrun: error: unable to find utility "simctl", not a developer tool or in PATH
+) during validation.
+
+Analyzed 1 podspec.
+```
+  * Download the latest XCode (not just the CLI)
+  * Open XCode and goto 'XCode' -> 'Preferences' -> 'Location'
 
 Contributing
 ============
